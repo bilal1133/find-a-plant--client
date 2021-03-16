@@ -47,6 +47,7 @@ const ShopDefaultPage = () => {
                             <ShopItems columns={6} pageSize={18} />
                         </div>
                     </div>
+                
                 </div>
             </div>
         </ContainerShop>

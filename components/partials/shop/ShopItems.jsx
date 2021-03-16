@@ -28,8 +28,10 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
     async function getProducts(params) {
         setLoading(true);
         const responseData = await ProductRepository.getProducts(params);
+        console.log('responseDataresponseData', responseData.totalItems);
         if (responseData) {
             setProductItems(responseData.items);
+            setTotal(responseData.totalItems);
             setTimeout(
                 function () {
                     setLoading(false);
@@ -45,6 +47,7 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
 
     async function getTotalRecords(params) {
         const responseData = await ProductRepository.getTotalRecords();
+
         if (responseData) {
             setTotal(responseData);
         }
@@ -55,15 +58,14 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
             case 2:
                 setClasses('col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6');
                 return 3;
-                break;
+
             case 4:
                 setClasses('col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6');
                 return 4;
-                break;
+
             case 6:
                 setClasses('col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6');
                 return 6;
-                break;
 
             default:
                 setClasses('col-xl-4 col-lg-4 col-md-3 col-sm-6 col-6');
@@ -87,7 +89,7 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
                 _limit: pageSize,
             };
         }
-        getTotalRecords();
+        // getTotalRecords();
         getProducts(params);
         handleSetColumns();
     }, [query]);
@@ -109,7 +111,7 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
                 );
             } else {
                 productItemsView = productItems.map((item) => (
-                    <ProductWide product={item} />
+                    <ProductWide key={item.id} product={item} />
                 ));
             }
         } else {
