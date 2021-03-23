@@ -1,13 +1,13 @@
 import React from 'react';
 
-const PartialVendor = ({ vendor }) => {
-    console.log('VENDOR', vendor);
+const PartialVendor = ({ store }) => {
+    console.log('store', store);
     return (
         <section>
-            <h4>{`${vendor.first_name} ${vendor.last_name}`}</h4>
-            <h4>{`${vendor.email}`} </h4>
-            <h4>{`${vendor.phone}`} </h4>
-            <p>{JSON.stringify(vendor.user_data[0].address)}</p>
+            <p>{JSON.stringify(store.user_data[0].address)}</p>
+            <h4>{`${store.first_name} ${store.last_name}`}</h4>
+            <h4>{`${store.email}`} </h4>
+            <h4>{`${store.phone}`} </h4>
             <a href="#">More Products from Gopro</a>
             {/* city: "lahore"
 house_no: "ddk"

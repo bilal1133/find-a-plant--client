@@ -65,12 +65,13 @@ export default function WPModulePlantInfo({ attributes }) {
                 alignItems: 'center',
                 listStyle: 'none',
             }}>
-            {plantInfo.map((single) => {
+            {plantInfo.map((single, i) => {
                 if (!attributes[single.description]) {
                     return null;
                 }
                 return (
                     <SingleInfo
+                        key={`uuid${i}`}
                         icon={single.icon}
                         heading={single.heading}
                         description={attributes[single.description]}
