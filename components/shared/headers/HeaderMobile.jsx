@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import CurrencyDropdown from './modules/CurrencyDropdown';
+// import CurrencyDropdown from './modules/CurrencyDropdown';
 import Link from 'next/link';
-import LanguageSwicher from './modules/LanguageSwicher';
+// import LanguageSwicher from './modules/LanguageSwicher';
 import MobileHeaderActions from './modules/MobileHeaderActions';
+import { siteName } from '~/constants/siteName';
 
 class HeaderMobile extends Component {
     constructor({ props }) {
@@ -14,13 +15,13 @@ class HeaderMobile extends Component {
             <header className="header header--mobile">
                 <div className="header__top">
                     <div className="header__left">
-                        <p>Welcome to Martfury Online Shopping Store !</p>
+                        <p>Welcome to {siteName} Online Plant Store !</p>
                     </div>
                     <div className="header__right">
                         <ul className="navigation__extra">
                             <li>
                                 <Link href="/vendor/become-a-vendor">
-                                    <a>Sell on Martfury</a>
+                                    <a>Sell on {siteName}</a>
                                 </Link>
                             </li>
                             <li>
@@ -28,12 +29,12 @@ class HeaderMobile extends Component {
                                     <a>Tract your order</a>
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <CurrencyDropdown />
                             </li>
                             <li>
                                 <LanguageSwicher />
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

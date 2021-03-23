@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Link from 'next/link';
 import Rating from '~/components/elements/Rating';
@@ -20,14 +21,16 @@ const ModuleDetailTopInformation = ({ product }) => {
         <header>
             <h1>{product.title}</h1>
             <div className="ps-product__meta">
-                <p>
-                    Brand:
-                    <Link href={`/shop/${product?.store.id}`}>
-                        <a className="ml-2 text-capitalize">
-                            {product?.store.user_data[0]?.store_name}
-                        </a>
-                    </Link>
-                </p>
+                {product.brand && (
+                    <p>
+                        Brand:
+                        <Link href={`/shop/`}>
+                            <a className="ml-2 text-capitalize">
+                                {product.brand}
+                            </a>
+                        </Link>
+                    </p>
+                )}{' '}
                 <div className="ps-product__rating">
                     <Rating review={product.review} />
                     <span>({product.review} review)</span>

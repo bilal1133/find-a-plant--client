@@ -19,7 +19,7 @@ const MartketPlace4SiteFeatures = () => (
                     </div>
                     <div className="ps-block__right">
                         <h4>90 Days Return</h4>
-                        <p>If goods have problems</p>
+                        <p>If goods have probldfems</p>
                     </div>
                 </div>
                 <div className="ps-block__item">

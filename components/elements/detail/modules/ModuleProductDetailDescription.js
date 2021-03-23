@@ -17,8 +17,10 @@ const ModuleProductDetailDescription = ({ product }) => (
         <p
             className="ps-list--dot"
             dangerouslySetInnerHTML={{
-                __html: product?.store.user_data[0]?.store_name,
-            }}>
+                __html: product?.description,
+            }}
+        >
+            {/* {product?.description} */}
             {/* // <li>Unrestrained and portable active stereo speaker</li>
             // <li> Free from the confines of wires and chords</li>
             // <li> 20 hours of portable capabilities</li>

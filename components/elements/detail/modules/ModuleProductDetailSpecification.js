@@ -12,9 +12,11 @@ const ModuleProductDetailSpecification = ({ categories = [], tags = [] }) => (
         </p>
         <p className="categories">
             <strong> Categories:</strong>
-            {categories.map((single, index) => {
+            {categories.map((single) => {
                 return (
-                    <Link key={single._id} href="/shop">
+                    <Link
+                        key={single._id}
+                        href={`/shop?product_categories.slug=${single.slug}`}>
                         <a>{single.name}</a>
                     </Link>
                 );
@@ -23,9 +25,11 @@ const ModuleProductDetailSpecification = ({ categories = [], tags = [] }) => (
         <p className="tags">
             <strong> Tags</strong>
 
-            {tags.map((single, index) => {
+            {tags.map((single) => {
                 return (
-                    <Link key={single._id} href="/shop">
+                    <Link
+                        key={single._id}
+                        href={`/shop?tags.name=${single.name}`}>
                         <a>{single.name}</a>
                     </Link>
                 );

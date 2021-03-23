@@ -20,20 +20,20 @@ const HomepageDefaultPage = () => {
             <HomeAdsColumns />
             <HomeDefaultTopCategories />
             <HomeDefaultProductListing
-                collectionSlug="consumer-electronics"
-                title="Consumer Electronics"
+                collectionSlug="plant-and-tree"
+                title="Plant And Tree"
             />
             <HomeDefaultProductListing
-                collectionSlug="clothings"
-                title="Clothings"
+                collectionSlug="pots-and-planters"
+                title="Pots And Planters"
             />
             <HomeDefaultProductListing
-                collectionSlug="garden-and-kitchen"
-                title="Garden & Kitchen"
+                collectionSlug="seed-and-equipment"
+                title="Seed And Equipment"
             />
             <HomeAds />
             <DownLoadApp />
-            <NewArrivals collectionSlug="new-arrivals-products" />
+            <NewArrivals collectionSlug="New-arrivals-products" />
             <Newletters />
         </ContainerHomeDefault>
     );

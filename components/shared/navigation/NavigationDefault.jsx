@@ -4,10 +4,10 @@ import { notification } from 'antd';
 import Menu from '../../elements/menu/Menu';
 
 import menuData from '../../../public/static/data/menu';
-import CurrencyDropdown from '../headers/modules/CurrencyDropdown';
-import LanguageSwicher from '../headers/modules/LanguageSwicher';
+// import CurrencyDropdown from '../headers/modules/CurrencyDropdown';
+// import LanguageSwicher from '../headers/modules/LanguageSwicher';
 import MenuCategoriesDropdown from '~/components/shared/menus/MenuCategoriesDropdown';
-
+import { siteName } from '../../../constants/siteName';
 class NavigationDefault extends Component {
     constructor(props) {
         super(props);
@@ -37,7 +37,7 @@ class NavigationDefault extends Component {
                         <ul className="navigation__extra">
                             <li>
                                 <Link href="/vendor/become-a-vendor">
-                                    <a>Sell on Martfury</a>
+                                    <a>Sell on {siteName}</a>
                                 </Link>
                             </li>
                             <li>
@@ -45,12 +45,12 @@ class NavigationDefault extends Component {
                                     <a>Tract your order</a>
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <CurrencyDropdown />
                             </li>
                             <li>
                                 <LanguageSwicher />
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

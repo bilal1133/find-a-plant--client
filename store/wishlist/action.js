@@ -25,7 +25,7 @@ export function getWishlistListSuccess(data) {
 }
 
 export function addItemToWishlist(product) {
-    return { type: actionTypes.ADD_ITEM_WISHLISH, product };
+    return { type: actionTypes.ADD_ITEM_WISHLISH, product }; 
 }
 
 export function removeWishlistItem(product) {

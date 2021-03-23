@@ -121,7 +121,7 @@ const HeaderAutoPart = () => {
                         <div className="menu--product-categories">
                             <div className="menu__toggle">
                                 <i className="icon-menu"></i>
-                                <span>Shop by Department</span>
+                                <span>Plant by Location</span>
                             </div>
                             <div className="menu__content">
                                 <ul className="menu--dropdown">

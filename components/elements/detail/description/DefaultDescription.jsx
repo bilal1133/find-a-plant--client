@@ -16,9 +16,9 @@ const DefaultDescription = ({ product }) => {
     return (
         <div className="ps-product__content ps-tab-root">
             <Tabs defaultActiveKey="1">
-                <TabPane tab="Description" key="1">
+                {/* <TabPane tab="Description" key="1">
                     <PartialDescription />
-                </TabPane>
+                </TabPane> */}
                 <TabPane tab="Specification" key="2">
                     <PartialSpecification
                         specification={product.specification[0]}
@@ -33,9 +33,9 @@ const DefaultDescription = ({ product }) => {
                 {/* <TabPane tab="Questions and Answers" key="5">
                     Content of Tab Pane 3
                 </TabPane> */}
-                <TabPane tab="More Offers" key="6">
+                {/* <TabPane tab="More Offers" key="6">
                     <WPModulePlantInfo attributes={product.specification[0]} />
-                </TabPane>
+                </TabPane> */}
             </Tabs>
         </div>
     );

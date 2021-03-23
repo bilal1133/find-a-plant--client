@@ -10,7 +10,7 @@ const MarketPlaceSiteFeatures = () => (
                     </div>
                     <div className="ps-block__right">
                         <h4>Free Delivery</h4>
-                        <p>For all oders over $99</p>
+                        <p>For all oders over Rs : 9999</p>
                     </div>
                 </div>
                 <div className="ps-block__item">
@@ -18,8 +18,8 @@ const MarketPlaceSiteFeatures = () => (
                         <i className="icon-sync"></i>
                     </div>
                     <div className="ps-block__right">
-                        <h4>90 Days Return</h4>
-                        <p>If goods have problems</p>
+                        <h4>3 Days Return</h4>
+                        <p>If Plant have problems</p>
                     </div>
                 </div>
                 <div className="ps-block__item">
