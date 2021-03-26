@@ -1,6 +1,6 @@
 import React from 'react';
 import FooterWidgets from './modules/FooterWidgets';
-import FooterLinks from './modules/FooterLinks';
+// import FooterLinks from './modules/FooterLinks';
 import FooterCopyright from './modules/FooterCopyright';
 
 const FooterMarketPlace2 = () => (
@@ -13,7 +13,7 @@ const FooterMarketPlace2 = () => (
                     </div>
                     <div className="ps-block__right">
                         <h4>Free Delivery</h4>
-                        <p>For all oders over $99</p>
+                        <p>For all oders over Rs. 999</p>
                     </div>
                 </div>
                 <div className="ps-block__item">
@@ -21,8 +21,8 @@ const FooterMarketPlace2 = () => (
                         <i className="icon-sync"></i>
                     </div>
                     <div className="ps-block__right">
-                        <h4>90 Days Return</h4>
-                        <p>If goods have problems</p>
+                        <h4>3 Days Return</h4>
+                        <p>If Plant have problems</p>
                     </div>
                 </div>
                 <div className="ps-block__item">
@@ -45,7 +45,7 @@ const FooterMarketPlace2 = () => (
                 </div>
             </div>
             <FooterWidgets />
-            <FooterLinks />
+            {/* <FooterLinks /> */}
             <FooterCopyright />
         </div>
     </footer>

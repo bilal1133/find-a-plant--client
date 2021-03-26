@@ -31,8 +31,8 @@ const HomepageDefaultPage = () => {
                 collectionSlug="seed-and-equipment"
                 title="Seed And Equipment"
             />
-            <HomeAds />
-            <DownLoadApp />
+            {/* <HomeAds /> */}
+            {/* <DownLoadApp /> */}
             <NewArrivals collectionSlug="New-arrivals-products" />
             <Newletters />
         </ContainerHomeDefault>

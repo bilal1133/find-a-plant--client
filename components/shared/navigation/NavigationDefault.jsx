@@ -7,7 +7,7 @@ import menuData from '../../../public/static/data/menu';
 // import CurrencyDropdown from '../headers/modules/CurrencyDropdown';
 // import LanguageSwicher from '../headers/modules/LanguageSwicher';
 import MenuCategoriesDropdown from '~/components/shared/menus/MenuCategoriesDropdown';
-import { siteName } from '../../../constants/siteName';
+import { siteName } from '../../../constants/siteDetails';
 class NavigationDefault extends Component {
     constructor(props) {
         super(props);

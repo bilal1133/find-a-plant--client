@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 // import LanguageSwicher from './modules/LanguageSwicher';
 import MobileHeaderActions from './modules/MobileHeaderActions';
-import { siteName } from '~/constants/siteName';
+import { siteName } from '~/constants/siteDetails';
 
 class HeaderMobile extends Component {
     constructor({ props }) {

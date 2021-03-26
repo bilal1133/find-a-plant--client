@@ -17,7 +17,7 @@ const ShopDefaultPage = () => {
             url: '/',
         },
         {
-            text: 'Shop Default',
+            text: 'Shop',
         },
     ];
 
@@ -27,8 +27,8 @@ const ShopDefaultPage = () => {
                 <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
                 <div className="ps-container">
                     <ShopBanner />
-                    <ShopBrands />
-                    <ShopCategories />
+                    {/* <ShopBrands />
+                    <ShopCategories /> */}
                     <div className="ps-layout--shop">
                         <div className="ps-layout__left">
                             <WidgetShopCategories />
@@ -47,7 +47,6 @@ const ShopDefaultPage = () => {
                             <ShopItems columns={6} pageSize={18} />
                         </div>
                     </div>
-                
                 </div>
             </div>
         </ContainerShop>
