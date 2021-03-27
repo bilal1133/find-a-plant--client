@@ -4,65 +4,7 @@ import Router from 'next/router';
 import { Spin } from 'antd';
 import ProductRepository from '~/repositories/ProductRepository';
 import ProductSearchResult from '~/components/elements/products/ProductSearchResult';
-
-const exampleCategories = [
-    'All',
-    'Babies & Moms',
-    'Books & Office',
-    'Cars & Motocycles',
-    'Clothing & Apparel',
-    ' Accessories',
-    'Bags',
-    'Kid’s Fashion',
-    'Mens',
-    'Shoes',
-    'Sunglasses',
-    'Womens',
-    'Computers & Technologies',
-    'Desktop PC',
-    'Laptop',
-    'Smartphones',
-    'Consumer Electrics',
-    'Air Conditioners',
-    'Accessories',
-    'Type Hanging Cell',
-    'Audios & Theaters',
-    'Headphone',
-    'Home Theater System',
-    'Speakers',
-    'Car Electronics',
-    'Audio & Video',
-    'Car Security',
-    'Radar Detector',
-    'Vehicle GPS',
-    'Office Electronics',
-    'Printers',
-    'Projectors',
-    'Scanners',
-    'Store & Business',
-    'Refrigerators',
-    'TV Televisions',
-    '4K Ultra HD TVs',
-    'LED TVs',
-    'OLED TVs',
-    'Washing Machines',
-    'Type Drying Clothes',
-    'Type Horizontal',
-    'Type Vertical',
-    'Garden & Kitchen',
-    'Cookware',
-    'Decoration',
-    'Furniture',
-    'Garden Tools',
-    'Home Improvement',
-    'Powers And Hand Tools',
-    'Utensil & Gadget',
-    'Health & Beauty',
-    'Equipments',
-    'Hair Care',
-    'Perfumer',
-    'Wine Cabinets',
-];
+import { exampleCategories } from '~/constants/productCategories';
 
 function useDebounce(value, delay) {
     const [debouncedValue, setDebouncedValue] = useState(value);
@@ -84,6 +26,7 @@ const SearchHeader = () => {
     const inputEl = useRef(null);
     const [isSearch, setIsSearch] = useState(false);
     const [keyword, setKeyword] = useState('');
+    const [category, setCategory] = useState('');
     const [resultItems, setResultItems] = useState(null);
     const [loading, setLoading] = useState(false);
     const debouncedSearchTerm = useDebounce(keyword, 300);
@@ -106,10 +49,14 @@ const SearchHeader = () => {
                 const queries = {
                     _limit: 5,
                     title_contains: keyword,
+                    'product_categories.slug': category,
                 };
+
+                category === 'all'
+                    ? delete queries['product_categories.slug']
+                    : null;
                 const products = ProductRepository.getRecords(queries);
                 products.then((result) => {
-                    console.log(result);
                     setLoading(false);
                     setResultItems(result);
                     setIsSearch(true);
@@ -125,7 +72,7 @@ const SearchHeader = () => {
             setLoading(false);
             setIsSearch(false);
         }
-    }, [debouncedSearchTerm]);
+    }, [debouncedSearchTerm, category]);
 
     // Views
     let productItemsView,
@@ -166,10 +113,19 @@ const SearchHeader = () => {
     }
 
     selectOptionView = exampleCategories.map((option) => (
-        <option value={option} key={option}>
-            {option}
+        <option
+            value={option.key}
+            key={option.key}
+            style={{ backgroundColor: category === option.key && 'grey' }}>
+            {option.title}
         </option>
     ));
+
+    selectOptionView.unshift(
+        <option value={'all'} key={'all'}>
+            ALL
+        </option>
+    );
 
     return (
         <form
@@ -178,7 +134,14 @@ const SearchHeader = () => {
             action="/"
             onSubmit={handleSubmit}>
             <div className="ps-form__categories">
-                <select className="form-control">{selectOptionView}</select>
+                <select
+                    className="form-control"
+                    value={category}
+                    onChange={(e) => {
+                        setCategory(e.target.value);
+                    }}>
+                    {selectOptionView}
+                </select>
             </div>
             <div className="ps-form__input">
                 <input
