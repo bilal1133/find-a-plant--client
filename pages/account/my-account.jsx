@@ -17,7 +17,7 @@ const MyAccountPage = () => {
     return (
         <ContainerPage title="My account" boxed={true}>
             <div className="ps-page--my-account">
-                <BreadCrumb breacrumb={this.state.breadCrumb} />
+                <BreadCrumb breacrumb={breadCrumb} />
                 <MyAccount />
             </div>
         </ContainerPage>

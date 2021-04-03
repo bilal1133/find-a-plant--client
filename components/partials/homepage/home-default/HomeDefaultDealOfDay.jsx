@@ -11,7 +11,18 @@ import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-hel
 const HomeDefaultDealOfDay = ({ collectionSlug }) => {
     const [productItems, setProductItems] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    let sliderProps = {
+        ...carouselFullwidth,
+        className: 'slider variable-width',
+        centerPadding: '60px',
+        swipeToSlide: true,
+        dots: false,
+        infinite: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        variableWidth: true,
+        adaptiveHeight: true,
+    };
     async function getProducts() {
         setLoading(true);
         const responseData = await getProductsByCollectionHelper(
@@ -37,10 +48,14 @@ const HomeDefaultDealOfDay = ({ collectionSlug }) => {
     if (!loading) {
         if (productItems && productItems.length > 0) {
             const slideItems = productItems.map((item) => (
-                <ProductDealOfDay product={item} key={item.id} />
+                <div style={{ width: 250, height: 500 }} key={item.id}>
+                    <ProductDealOfDay product={item} />
+                </div>
             ));
+            console.log('👓👓👓', slideItems.length);
             productItemsView = (
-                <Slider {...carouselFullwidth} className="ps-carousel outside">
+                // <div>{slideItems}</div>
+                <Slider {...sliderProps} className="ps-carousel outside">
                     {slideItems}
                 </Slider>
             );
