@@ -4,10 +4,10 @@ const PartialVendor = ({ store }) => {
     console.log('store', store);
     return (
         <section>
-            <p>{JSON.stringify(store.user_data[0].address)}</p>
-            <h4>{`${store.first_name} ${store.last_name}`}</h4>
-            <h4>{`${store.email}`} </h4>
-            <h4>{`${store.phone}`} </h4>
+            <p>{JSON.stringify(store)}</p>
+            {/* <h4>{`${store.first_name} ${store.last_name}`}</h4> */}
+            {/* <h4>{`${store.email}`} </h4>
+            <h4>{`${store.phone}`} </h4> */}
             <a href="#">More Products from Gopro</a>
             {/* city: "lahore"
 house_no: "ddk"

@@ -7,7 +7,7 @@ const ModuleProductDetailDescription = ({ product }) => (
             Sold By:
             <Link href="/shop">
                 <a className="ml-2 text-capitalize">
-                    {product?.store.user_data[0]?.store_name}
+                    {product?.store.store_name}
                 </a>
                 {/* <a>
                     <strong> {product.vendor}</strong>

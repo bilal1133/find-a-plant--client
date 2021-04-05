@@ -125,7 +125,7 @@ class ProductDetailImageSwatches extends Component {
                                 Brand:<a href="shop-default.html">Adidas</a>
                             </p>
                             <div className="ps-product__rating">
-                                <Rating />
+                                <Rating value={product.rating}/>
                                 <span>(1 review)</span>
                             </div>
                         </div>

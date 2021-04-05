@@ -19,7 +19,7 @@ const OrganicProductHotDeal = () => (
                         $36.78 <del> $56.99</del>
                     </h4>
                     <div className="ps-product__rating">
-                        <Rating/>
+                        <Rating value={2}/>
                         <span>(1 review)</span>
                     </div>
                     <div className="ps-product__specification">

@@ -25,14 +25,16 @@ const Product = ({ product }) => {
             </div>
             <div className="ps-product__container">
                 <Link href="/shop">
-                    <a className="ps-product__vendor">Young Shop</a>
+                    <a className="ps-product__vendor">
+                        Sold By: {product.store.store_name}
+                    </a>
                 </Link>
                 <div className="ps-product__content">
                     <Link href="/product/[pid]" as={`/product/${product.id}`}>
                         <a className="ps-product__title">{product.title}</a>
                     </Link>
                     <div className="ps-product__rating">
-                        <Rating />
+                        <Rating value={product.rating} />
                         <span>02</span>
                     </div>
                     {priceView}

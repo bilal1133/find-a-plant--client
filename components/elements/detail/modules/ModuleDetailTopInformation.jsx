@@ -26,13 +26,13 @@ const ModuleDetailTopInformation = ({ product }) => {
                         Brand:
                         <Link href={`/shop/`}>
                             <a className="ml-2 text-capitalize">
-                                {product.brand}
+                                {JSON.stringify(product.brand)}
                             </a>
                         </Link>
                     </p>
                 )}{' '}
                 <div className="ps-product__rating">
-                    <Rating review={product.review} />
+                    <Rating review={product.rating} />
                     <span>({product.review} review)</span>
                 </div>
             </div>

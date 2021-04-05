@@ -35,7 +35,7 @@ const ProductDealHot = ({ product }) => {
                             </h4>
                         )}
                         <div className="ps-product__rating">
-                            <Rating />
+                            <Rating value={product.rating} />
                             <span>(1 review)</span>
                         </div>
                         <div className="ps-product__specification">

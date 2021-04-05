@@ -14,7 +14,7 @@ const ModuleStoreInformation = ({ store }) => {
                 <div className="ps-block__container">
                     <div className="ps-block__header">
                         <h4>{store.name}</h4>
-                        <Rating />
+                        <Rating value={store.rating}/>
                         <p>
                             <strong>85% Positive</strong> (562 rating)
                         </p>

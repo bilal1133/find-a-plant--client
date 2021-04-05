@@ -18,7 +18,7 @@ const StoreDefault = ({ source }) => {
                     </h4>
 
                     <div className="ps-block__rating">
-                        <Rating />
+                        <Rating value={source.rating} />
                     </div>
                     <p>{source.address}</p>
                     {source.phone && (

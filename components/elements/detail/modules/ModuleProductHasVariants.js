@@ -232,7 +232,7 @@ class ModuleProductHasVariants extends Component {
                             </Link>
                         </p>
                         <div className="ps-product__rating">
-                            <Rating />
+                            <Rating value={store.rating} />
                             <span>(1 review)</span>
                         </div>
                     </div>

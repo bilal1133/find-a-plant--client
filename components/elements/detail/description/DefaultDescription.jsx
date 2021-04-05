@@ -28,7 +28,7 @@ const DefaultDescription = ({ product }) => {
                     <PartialVendor store={product.store} />
                 </TabPane>
                 <TabPane tab="Reviews (1)" key="4">
-                    <PartialReview />
+                    <PartialReview comments={product.comments} />
                 </TabPane>
                 {/* <TabPane tab="Questions and Answers" key="5">
                     Content of Tab Pane 3
