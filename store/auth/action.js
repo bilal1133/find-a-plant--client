@@ -4,14 +4,23 @@ export const actionTypes = {
     LOGOUT: 'LOGOUT',
     LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
     CHECK_AUTHORIZATION: 'CHECK_AUTHORIZATION',
+    AUTH_LOADING: 'AUTH_LOADING',
+    AUTH_ERROR: 'AUTH_ERROR',
 };
 
-export function login() {
-    return { type: actionTypes.LOGIN_REQUEST };
+export function loading(payload) {
+    return { type: actionTypes.AUTH_LOADING, payload };
+}
+export function authError(payload) {
+    return { type: actionTypes.AUTH_ERROR, payload };
 }
 
-export function loginSuccess() {
-    return { type: actionTypes.LOGIN_SUCCESS };
+export function login(payload) {
+    return { type: actionTypes.LOGIN_REQUEST, payload };
+}
+
+export function loginSuccess(payload) {
+    return { type: actionTypes.LOGIN_SUCCESS, payload: payload };
 }
 
 export function logOut() {

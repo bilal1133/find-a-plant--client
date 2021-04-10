@@ -2,19 +2,32 @@ import { actionTypes } from './action';
 
 export const initState = {
     isLoggedIn: false,
+    user: undefined,
+    loading: false,
+    error: null,
 };
 
 function reducer(state = initState, action) {
     switch (action.type) {
+        case actionTypes.AUTH_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+            };
+        case actionTypes.AUTH_LOADING:
+            return {
+                ...state,
+                loading: action.payload,
+            };
         case actionTypes.LOGIN_SUCCESS:
             return {
                 ...state,
                 ...{ isLoggedIn: true },
+                user: action.payload,
             };
         case actionTypes.LOGOUT_SUCCESS:
             return {
-                ...state,
-                ...{ isLoggedIn: false },
+                ...initState,
             };
         default:
             return state;

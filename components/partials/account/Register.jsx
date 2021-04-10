@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { login } from '../../../store/auth/action';
 
-import { Form, Input } from 'antd';
+import { Form, Input, Radio } from 'antd';
 import { connect } from 'react-redux';
 
 class Register extends Component {
@@ -12,7 +12,7 @@ class Register extends Component {
         this.state = {};
     }
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -50,15 +50,71 @@ class Register extends Component {
                                         name="email"
                                         rules={[
                                             {
+                                                type: 'email',
+                                                message:
+                                                    'The input is not valid E-mail!',
+                                            },
+                                            {
                                                 required: true,
                                                 message:
-                                                    'Please input your email!',
+                                                    'Please input your E-mail!',
                                             },
                                         ]}>
                                         <Input
                                             className="form-control"
                                             type="email"
                                             placeholder="Email address"
+                                        />
+                                    </Form.Item>
+                                </div>
+                                <div className="form-group">
+                                    <Form.Item
+                                        name="first_name"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    'Please input First Name',
+                                            },
+                                        ]}>
+                                        <Input
+                                            className="form-control"
+                                            type="string"
+                                            placeholder="First Name"
+                                        />
+                                    </Form.Item>
+                                </div>
+                                <div className="form-group">
+                                    <Form.Item
+                                        name="last_name"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    'Please input Last Name',
+                                            },
+                                        ]}>
+                                        <Input
+                                            className="form-control"
+                                            type="string"
+                                            placeholder="Last Name"
+                                        />
+                                    </Form.Item>
+                                </div>
+                                <div className="form-group">
+                                    <Form.Item
+                                        name="phone"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    'Please input your Phone No',
+                                            },
+                                        ]}>
+                                        <Input
+                                            className="form-control"
+                                            type="number"
+                                            placeholder="03xx-xxxxxxx"
                                         />
                                     </Form.Item>
                                 </div>
@@ -71,14 +127,63 @@ class Register extends Component {
                                                 message:
                                                     'Please input your password!',
                                             },
+                                        ]}
+                                        hasFeedback>
+                                        <Input
+                                            className="form-control"
+                                            type="password"
+                                            placeholder="Password"
+                                        />
+                                    </Form.Item>
+                                </div>
+                                <div className="form-group form-forgot">
+                                    <Form.Item
+                                        name="confirm"
+                                        dependencies={['password']}
+                                        hasFeedback
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    'Please confirm your password!',
+                                            },
+                                            ({ getFieldValue }) => ({
+                                                validator(_, value) {
+                                                    if (
+                                                        !value ||
+                                                        getFieldValue(
+                                                            'password'
+                                                        ) === value
+                                                    ) {
+                                                        return Promise.resolve();
+                                                    }
+                                                    return Promise.reject(
+                                                        new Error(
+                                                            'The two passwords that you entered do not match!'
+                                                        )
+                                                    );
+                                                },
+                                            }),
                                         ]}>
                                         <Input
                                             className="form-control"
                                             type="password"
-                                            placeholder="Password..."
+                                            placeholder="Confirm Password"
                                         />
                                     </Form.Item>
                                 </div>
+
+                                <Form.Item name="user_type">
+                                    <Radio.Group>
+                                        <Radio value="vendor">
+                                            I am a Vendor
+                                        </Radio>
+                                        <Radio value="customer">
+                                            I am a Customer
+                                        </Radio>
+                                    </Radio.Group>
+                                </Form.Item>
+
                                 <div className="form-group submit">
                                     <button
                                         type="submit"
@@ -120,7 +225,7 @@ class Register extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.auth;
 };
 export default connect(mapStateToProps)(Register);

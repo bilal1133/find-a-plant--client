@@ -5,6 +5,7 @@ import { login } from '../../../store/auth/action';
 
 import { Form, Input, notification } from 'antd';
 import { connect } from 'react-redux';
+import Text from 'antd/lib/typography/Text';
 
 class Login extends Component {
     constructor(props) {
@@ -28,14 +29,14 @@ class Login extends Component {
         });
     }
 
-    handleLoginSubmit = e => {
-        console.log('test');
-        this.props.dispatch(login());
-        Router.push('/');
-
+    handleLoginSubmit = (e) => {
+        console.log('test', e);
+        this.props.dispatch(login(e));
+        // Router.push('/');
     };
 
     render() {
+        console.log('BILALprops', this.props);
         return (
             <div className="ps-my-account">
                 <div className="container">
@@ -57,6 +58,12 @@ class Login extends Component {
                         <div className="ps-tab active" id="sign-in">
                             <div className="ps-form__content">
                                 <h5>Log In Your Account</h5>
+
+                                {this.props.error && (
+                                    <Text type="danger">
+                                        {this.props.error}
+                                    </Text>
+                                )}
                                 <div className="form-group">
                                     <Form.Item
                                         name="username"
@@ -107,7 +114,9 @@ class Login extends Component {
                                 <div className="form-group submit">
                                     <button
                                         type="submit"
-                                        className="ps-btn ps-btn--fullwidth">
+                                        className="ps-btn ps-btn--fullwidth"
+                                        disabled={this.props.loading}
+                                        >
                                         Login
                                     </button>
                                 </div>
@@ -119,7 +128,7 @@ class Login extends Component {
                                         <a
                                             className="facebook"
                                             href="#"
-                                            onClick={e =>
+                                            onClick={(e) =>
                                                 this.handleFeatureWillUpdate(e)
                                             }>
                                             <i className="fa fa-facebook"></i>
@@ -129,7 +138,7 @@ class Login extends Component {
                                         <a
                                             className="google"
                                             href="#"
-                                            onClick={e =>
+                                            onClick={(e) =>
                                                 this.handleFeatureWillUpdate(e)
                                             }>
                                             <i className="fa fa-google-plus"></i>
@@ -139,7 +148,7 @@ class Login extends Component {
                                         <a
                                             className="twitter"
                                             href="#"
-                                            onClick={e =>
+                                            onClick={(e) =>
                                                 this.handleFeatureWillUpdate(e)
                                             }>
                                             <i className="fa fa-twitter"></i>
@@ -149,7 +158,7 @@ class Login extends Component {
                                         <a
                                             className="instagram"
                                             href="#"
-                                            onClick={e =>
+                                            onClick={(e) =>
                                                 this.handleFeatureWillUpdate(e)
                                             }>
                                             <i className="fa fa-instagram"></i>
@@ -164,7 +173,7 @@ class Login extends Component {
         );
     }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.auth;
 };
 export default connect(mapStateToProps)(Login);
