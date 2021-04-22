@@ -5,7 +5,7 @@ import Checkout from '~/components/partials/account/Checkout';
 import { getCart } from '~/store/cart/action';
 import { connect, useDispatch } from 'react-redux';
 import ContainerPage from '~/components/layouts/ContainerPage';
-const CheckoutPage = () => {
+const CheckoutPage = ({ isLoggedIn, user }) => {
     const breadCrumb = [
         {
             text: 'Home',
@@ -28,10 +28,10 @@ const CheckoutPage = () => {
         <ContainerPage title="Checkout" boxed={true}>
             <div className="ps-page--simple">
                 <BreadCrumb breacrumb={breadCrumb} />
-                <Checkout />
+                <Checkout isLoggedIn={isLoggedIn} />
             </div>
         </ContainerPage>
     );
 };
 
-export default connect()(CheckoutPage);
+export default connect(({ auth }) => auth)(CheckoutPage);

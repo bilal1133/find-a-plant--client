@@ -4,15 +4,22 @@ const baseDomain = 'http://localhost:1337'; // API for products
 export const basePostUrl = 'https://beta.apinouthemes.com'; // API for post
 export const baseStoreURL = 'https://beta.apinouthemes.com'; // API for vendor(store)
 
-export const customHeaders = {
-    Accept: 'application/json',
+export const customHeaders = () => {
+    // let local = localStorage.getItem('persist:Find-a-Plant');
+    // let parseData = JSON.parse(local);
+
+    // console.log(parseData);
+
+    return {
+        Accept: 'application/json',
+    };
 };
 
 export const baseUrl = `${baseDomain}`;
 
 export default axios.create({
     baseUrl,
-    headers: customHeaders,
+    headers: customHeaders(),
 });
 
 export const serializeQuery = (query) => {

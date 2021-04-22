@@ -6,6 +6,8 @@ export const actionTypes = {
     CHECK_AUTHORIZATION: 'CHECK_AUTHORIZATION',
     AUTH_LOADING: 'AUTH_LOADING',
     AUTH_ERROR: 'AUTH_ERROR',
+    REGISTER_LOCAL: 'REGISTER_LOCAL',
+    UPDATE_USER: 'UPDATE_USER',
 };
 
 export function loading(payload) {
@@ -29,4 +31,11 @@ export function logOut() {
 
 export function logOutSuccess() {
     return { type: actionTypes.LOGOUT_SUCCESS };
+}
+
+export function registerLocal(payload) {
+    return { type: actionTypes.REGISTER_LOCAL, payload };
+}
+export function updateUser(payload) {
+    return { type: actionTypes.UPDATE_USER, payload };
 }

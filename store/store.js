@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
+import { siteName } from '~/constants/siteDetails';
 
 const bindMiddleware = middleware => {
     if (process.env.NODE_ENV !== 'production') {
@@ -15,7 +16,7 @@ const bindMiddleware = middleware => {
 };
 
 const persistConfig = {
-    key: 'martfury',
+    key: siteName,
     storage,
     whitelist: ['cart', 'compare', 'auth', 'wishlist'],
 };

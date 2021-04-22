@@ -1,7 +1,10 @@
 import React from 'react';
-import FormCheckoutInformation from './modules/FormCheckoutInformation';
+import {
+    CheckOutLogIn,
+    CheckOutNotLogIn,
+} from './modules/FormCheckoutInformation';
 import ModulePaymentOrderSummary from '~/components/partials/account/modules/ModulePaymentOrderSummary';
-const Checkout = () => {
+const Checkout = ({ isLoggedIn }) => {
     return (
         <div className="ps-checkout ps-section--shopping">
             <div className="container">
@@ -13,7 +16,11 @@ const Checkout = () => {
                         <div className="ps-form__content">
                             <div className="row">
                                 <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-                                    <FormCheckoutInformation />
+                                    {isLoggedIn ? (
+                                        <CheckOutLogIn />
+                                    ) : (
+                                        <CheckOutNotLogIn />
+                                    )}
                                 </div>
                                 <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12  ps-block--checkout-order">
                                     <div className="ps-form__orders">

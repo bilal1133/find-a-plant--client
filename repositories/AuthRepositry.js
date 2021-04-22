@@ -1,6 +1,29 @@
+/* eslint-disable no-useless-catch */
+import axios from 'axios';
+import { siteName } from '~/constants/siteDetails';
 import Repository, { baseUrl, serializeQuery } from './Repository';
-
 class AuthRepository {
+    // config() {
+    //     return {
+    //         headers: {
+    //             Authorization:
+    //                 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMjg2MWFlZGU5Zjg0MjJhOGM5ZTFhOSIsImlhdCI6MTYxODEyODQ5NCwiZXhwIjoxNjIwNzIwNDk0fQ.l82CT2hxj5cSIfIjdp-7V7-X_QHv3HIecXVRMjwyT9g',
+    //         },
+    //     };
+    // }
+
+    async getToken() {
+        return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMjg2MWFlZGU5Zjg0MjJhOGM5ZTFhOSIsImlhdCI6MTYxODEyODQ5NCwiZXhwIjoxNjIwNzIwNDk0fQ.l82CT2hxj5cSIfIjdp-7V7-X_QHv3HIecXVRMjwyT9g';
+        try {
+            const data = JSON.parse(
+                localStorage.getItem(`persist:${siteName}`)
+            );
+            return JSON.parse(data.auth).jwt;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async login(params) {
         try {
             const reponse = await Repository.post(`${baseUrl}/auth/local`, {
@@ -9,132 +32,47 @@ class AuthRepository {
                 // identifier: 'iqbal@gmail.com',
                 // password: 'string123',
             });
-            return reponse;
+            return reponse.data.user;
         } catch (error) {
-            throw error
+            throw error;
+        }
+    }
+
+    async registerLocal(data) {
+        try {
+            const reponse = await Repository.post(
+                `${baseUrl}/auth/local/register`,
+                data
+            );
+            return reponse.data.user;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updateUserData(data) {
+        try {
+            console.log(data);
+            console.log('the config', this);
+            const response = await Repository.put(
+                `${baseUrl}/users/${data.id}`,
+                data.data,
+                {
+                    headers: {
+                        Authorization:
+                            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMjg2MWFlZGU5Zjg0MjJhOGM5ZTFhOSIsImlhdCI6MTYxODY1MzQyMCwiZXhwIjoxNjIxMjQ1NDIwfQ.rIaqmEZu_n4qVhrdGBqcNfL7du1t-MLdJH96ScMjaVY',
+                    },
+                }
+            );
+            console.log(response);
+            // { error: JSON.stringify(error) }));
+        } catch (error) {
+            console.log(error);
         }
 
-        // .then((response) => {
-        //     return response.data;
-        // })
-        // .catch((error) => ({ error: JSON.stringify(error) }));
-    }
-
-    async getProducts(params) {
-        const reponse = await Repository.get(
-            `${baseUrl}/products?${serializeQuery(params)}`
-        )
-            .then((response) => {
-                return {
-                    items: response.data,
-                    totalItems: response.data.length,
-                };
-            })
-
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
-    }
-
-    async getBrands() {
-        const reponse = await Repository.get(`${baseUrl}/brands`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
-    }
-
-    async getProductCategories() {
-        const reponse = await Repository.get(`${baseUrl}/product-categories`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
-    }
-
-    async getTotalRecords() {
-        const reponse = await Repository.get(`${baseUrl}/products/count`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
-    }
-
-    async getProductsById(payload) {
-        const reponse = await Repository.get(`${baseUrl}/products/${payload}`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
-    }
-
-    async getProductsByCategory(payload) {
-        const reponse = await Repository.get(
-            `${baseUrl}/product-categories?slug=${payload}`
-        )
-            .then((response) => {
-                if (response.data) {
-                    if (response.data.length > 0) {
-                        return response.data[0];
-                    }
-                } else {
-                    return null;
-                }
-            })
-            .catch(() => {
-                return null;
-            });
-        return reponse;
-    }
-    async getProductsByBrand(payload) {
-        const reponse = await Repository.get(
-            `${baseUrl}/brands?slug=${payload}`
-        )
-            .then((response) => {
-                if (response.data) {
-                    if (response.data.length > 0) {
-                        return response.data[0];
-                    }
-                } else {
-                    return null;
-                }
-            })
-            .catch(() => {
-                return null;
-            });
-        return reponse;
-    }
-
-    async getProductsByBrands(payload) {
-        let query = '';
-        payload.forEach((item) => {
-            if (query === '') {
-                query = `id_in=${item}`;
-            } else {
-                query = query + `&id_in=${item}`;
-            }
-        });
-        const reponse = await Repository.get(`${baseUrl}/brands?${query}`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
-    }
-
-    async getProductsByPriceRange(payload) {
-        const reponse = await Repository.get(
-            `${baseUrl}/products?${serializeQuery(payload)}`
-        )
-            .then((response) => {
-                return response.data;
-            })
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
+        // return reponse;
     }
 }
-
+const bilal = new AuthRepository();
+bilal.getToken();
 export default new AuthRepository();

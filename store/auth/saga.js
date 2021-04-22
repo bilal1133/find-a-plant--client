@@ -1,4 +1,4 @@
-import { all, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { notification } from 'antd';
 import AuthRepository from '../../repositories/AuthRepositry';
 import {
@@ -9,10 +9,10 @@ import {
     loading,
 } from './action';
 
-const modalSuccess = (type) => {
+const modalSuccess = (type, message = 'You are login successful!') => {
     notification[type]({
-        message: 'Wellcome back',
-        description: 'You are login successful!',
+        message: 'Wellcome',
+        description: message,
     });
 };
 
@@ -52,8 +52,50 @@ function* logOutSaga() {
         console.log(err);
     }
 }
+function* registerLocalSaga(data) {
+    try {
+        yield put(loading(true));
+        yield put(authError(null));
+        let response = yield call(AuthRepository.registerLocal, data.payload);
+        yield put(loginSuccess(response));
+        modalSuccess('success', 'Account Created successful!');
+        console.log('response', response);
+        // modalWarning('warning');
+    } catch (err) {
+        // console.log('error.response', err.response.data.message[0]);
+        yield put(
+            authError(
+                'Email or Phone No is Already Taken. Login or Try with another PhoneNo or Email !'
+            )
+        );
+    }
+    yield put(loading(false));
+}
+function* updateUserSaga(data) {
+    try {
+        console.log(data);
+        yield put(loading(true));
+        yield put(authError(null));
+        let response = yield call(AuthRepository.updateUserData, data.payload);
+        console.log(response);
+        // yield put(loginSuccess(response));
+        // modalSuccess('success', 'Account Created successful!');
+        // console.log('response', response);
+        // modalWarning('warning');
+    } catch (err) {
+        // console.log('error.response', err.response.data.message[0]);
+        yield put(
+            authError(
+                'Email or Phone No is Already Taken. Login or Try with another PhoneNo or Email !'
+            )
+        );
+    }
+    yield put(loading(false));
+}
 
 export default function* rootSaga() {
     yield all([takeEvery(actionTypes.LOGIN_REQUEST, loginSaga)]);
     yield all([takeEvery(actionTypes.LOGOUT, logOutSaga)]);
+    yield all([takeEvery(actionTypes.REGISTER_LOCAL, registerLocalSaga)]);
+    yield all([takeEvery(actionTypes.UPDATE_USER, updateUserSaga)]);
 }
