@@ -22,7 +22,7 @@ const ProductDetailExtended = ({ product }) => (
                 />
                 <ModuleProductDetailSpecification />
                 <ModuleProductDetailSharing />
-                <ModuleDetailActionsMobile />
+                <ModuleDetailActionsMobile product={product}/>
             </div>
         </div>
         <DefaultDescription />

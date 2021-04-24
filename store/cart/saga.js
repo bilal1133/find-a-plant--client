@@ -8,6 +8,7 @@ import {
     updateCartSuccess,
     updateCartError,
 } from './action';
+import { siteName } from '~/constants/siteDetails';
 
 const modalSuccess = (type) => {
     notification[type]({
@@ -40,8 +41,9 @@ function* getCartSaga() {
 function* addItemSaga(payload) {
     try {
         const { product } = payload;
-        const localCart = JSON.parse(localStorage.getItem('persist:martfury'))
-            .cart;
+        const localCart = JSON.parse(
+            localStorage.getItem(`persist:${siteName}`)
+        ).cart;
         let currentCart = JSON.parse(localCart);
         let existItem = currentCart.cartItems.find(
             (item) => item.id === product.id
@@ -55,7 +57,8 @@ function* addItemSaga(payload) {
             currentCart.cartItems.push(product);
         }
         currentCart.amount = calculateAmount(currentCart.cartItems);
-        currentCart.cartTotal++;
+        currentCart.cartTotal+=product.quantity
+        // currentCart.cartTotal++;
         yield put(updateCartSuccess(currentCart));
         modalSuccess('success');
     } catch (err) {
@@ -67,7 +70,7 @@ function* removeItemSaga(payload) {
     try {
         const { product } = payload;
         let localCart = JSON.parse(
-            JSON.parse(localStorage.getItem('persist:martfury')).cart
+            JSON.parse(localStorage.getItem(`persist:${siteName}`)).cart
         );
         let index = localCart.cartItems.findIndex(
             (item) => item.id === product.id
@@ -91,7 +94,7 @@ function* increaseQtySaga(payload) {
     try {
         const { product } = payload;
         let localCart = JSON.parse(
-            JSON.parse(localStorage.getItem('persist:martfury')).cart
+            JSON.parse(localStorage.getItem(`persist:${siteName}`)).cart
         );
         let selectedItem = localCart.cartItems.find(
             (item) => item.id === product.id
@@ -111,7 +114,7 @@ function* decreaseItemQtySaga(payload) {
     try {
         const { product } = payload;
         const localCart = JSON.parse(
-            JSON.parse(localStorage.getItem('persist:martfury')).cart
+            JSON.parse(localStorage.getItem(`persist:${siteName}`)).cart
         );
         let selectedItem = localCart.cartItems.find(
             (item) => item.id === product.id

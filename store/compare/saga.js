@@ -6,6 +6,7 @@ import {
     updateCompareListSuccess,
     addItemSuccess,
 } from './action';
+import { siteName } from '~/constants/siteDetails';
 
 const modalSuccess = type => {
     notification[type]({
@@ -24,7 +25,7 @@ const modalWarning = type => {
 function* getCompareListSaga() {
     try {
         const localCompareList = JSON.parse(
-            localStorage.getItem('persist:martfury')
+            localStorage.getItem(`persist:${siteName}`)
         ).cart;
         yield put(getCompareListSuccess(localCompareList));
     } catch (err) {
@@ -36,7 +37,7 @@ function* addItemSaga(payload) {
     try {
         const { product } = payload;
         let localCompare = JSON.parse(
-            JSON.parse(localStorage.getItem('persist:martfury')).compare
+            JSON.parse(localStorage.getItem(`persist:${siteName}`)).compare
         );
 
         let existItem = localCompare.compareItems.find(
@@ -58,7 +59,7 @@ function* removeItemSaga(payload) {
     try {
         const { product } = payload;
         let localCompare = JSON.parse(
-            JSON.parse(localStorage.getItem('persist:martfury')).compare
+            JSON.parse(localStorage.getItem(`persist:${siteName}`)).compare
         );
         let index = localCompare.compareItems.indexOf(product);
         localCompare.compareTotal = localCompare.compareTotal - 1;

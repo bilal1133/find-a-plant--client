@@ -25,7 +25,7 @@ const ProductDetailFullwidth = ({ product }) => {
                         tags={product.tags}
                     />
                     <ModuleProductDetailSharing />
-                    <ModuleDetailActionsMobile />
+                    <ModuleDetailActionsMobile product={product}/>
                 </div>
             </div>
             <DefaultDescription product={product} />

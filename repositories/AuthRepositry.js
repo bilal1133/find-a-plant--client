@@ -49,6 +49,17 @@ class AuthRepository {
             throw error;
         }
     }
+    async socialLogin(data) {
+        try {
+            const reponse = await Repository.get(
+                `${baseUrl}/auth/${data.provider}/callback?${data.search}`,
+                data
+            );
+            return reponse.data.user;
+        } catch (error) {
+            throw error;
+        }
+    }
 
     async updateUserData(data) {
         try {
@@ -64,10 +75,10 @@ class AuthRepository {
                     },
                 }
             );
-            console.log(response);
+            return response.data.user;
             // { error: JSON.stringify(error) }));
         } catch (error) {
-            console.log(error);
+            throw error;
         }
 
         // return reponse;

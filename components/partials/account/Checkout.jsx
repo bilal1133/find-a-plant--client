@@ -4,7 +4,7 @@ import {
     CheckOutNotLogIn,
 } from './modules/FormCheckoutInformation';
 import ModulePaymentOrderSummary from '~/components/partials/account/modules/ModulePaymentOrderSummary';
-const Checkout = ({ isLoggedIn }) => {
+const Checkout = ({ isLoggedIn }) => { 
     return (
         <div className="ps-checkout ps-section--shopping">
             <div className="container">

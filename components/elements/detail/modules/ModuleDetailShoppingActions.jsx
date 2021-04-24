@@ -34,7 +34,6 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
 
     const handleAddItemToWishlist = (e) => {
         e.preventDefault();
-        const { product } = this.props;
         dispatch(addItemToWishlist(product));
     };
 

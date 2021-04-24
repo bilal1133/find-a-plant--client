@@ -6,3 +6,6 @@ export const facebookLik = 'contact@martfury.co';
 export const instaLink = 'contact@martfury.co';
 export const twitterLink = 'contact@martfury.co';
 export const googleLink = 'contact@martfury.co';
+
+// Server Link
+export const serverLink = 'http://localhost:1337'

@@ -8,6 +8,7 @@ export const actionTypes = {
     AUTH_ERROR: 'AUTH_ERROR',
     REGISTER_LOCAL: 'REGISTER_LOCAL',
     UPDATE_USER: 'UPDATE_USER',
+    SOCIAL_LOGIN: 'SOCIAL_LOGIN',
 };
 
 export function loading(payload) {
@@ -38,4 +39,7 @@ export function registerLocal(payload) {
 }
 export function updateUser(payload) {
     return { type: actionTypes.UPDATE_USER, payload };
+}
+export function socialLogin(payload) {
+    return { type: actionTypes.SOCIAL_LOGIN, payload };
 }

@@ -5,6 +5,7 @@ import {
     getWishlistListSuccess,
     updateWishlistListSuccess,
 } from './action';
+import { siteName } from '~/constants/siteDetails';
 
 const modalSuccess = type => {
     notification[type]({
@@ -23,7 +24,7 @@ const modalWarning = type => {
 function* getWishlistListSaga() {
     try {
         const localWishlistList = JSON.parse(
-            localStorage.getItem('persist:martfury')
+            localStorage.getItem(`persist:${siteName}`)
         ).wishlist;
         yield put(getWishlistListSuccess(localWishlistList));
     } catch (err) {
@@ -35,7 +36,7 @@ function* addItemToWishlistSaga(payload) {
     try {
         const { product } = payload;
         let localWishlist = JSON.parse(
-            JSON.parse(localStorage.getItem('persist:martfury')).wishlist
+            JSON.parse(localStorage.getItem(`persist:${siteName}`)).wishlist
         );
 
         let existItem = localWishlist.wishlistItems.find(
@@ -57,7 +58,7 @@ function* removeItemWishlistSaga(payload) {
     try {
         const { product } = payload;
         let localWishlist = JSON.parse(
-            JSON.parse(localStorage.getItem('persist:martfury')).wishlist
+            JSON.parse(localStorage.getItem(`persist:${siteName}`)).wishlist
         );
         let index = localWishlist.wishlistItems.indexOf(product);
         localWishlist.wishlistTotal = localWishlist.wishlistTotal - 1;

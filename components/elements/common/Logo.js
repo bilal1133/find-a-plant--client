@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 
 const Logo = ({ type }) => {
@@ -42,7 +41,7 @@ const Logo = ({ type }) => {
     else {
         data = {
             url: '/',
-            img: '/static/img/logo_light.png',
+            img: '/static/img/plantlogo.png',
         };
     }
     return (

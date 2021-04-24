@@ -71,6 +71,7 @@
     }
 
     .header__top {
+        // padding:  0;
         padding: 25px 0;
         background-color: $color-1st;
         border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -79,6 +80,7 @@
         .container {
             display: flex;
             flex-flow: row nowrap;
+            align-items: center;
 
             > * {
                 width: 100%;

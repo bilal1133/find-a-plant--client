@@ -78,17 +78,33 @@ function* updateUserSaga(data) {
         yield put(authError(null));
         let response = yield call(AuthRepository.updateUserData, data.payload);
         console.log(response);
-        // yield put(loginSuccess(response));
+        yield put(loginSuccess(response));
         // modalSuccess('success', 'Account Created successful!');
         // console.log('response', response);
-        // modalWarning('warning');
+        modalWarning('warning');
     } catch (err) {
         // console.log('error.response', err.response.data.message[0]);
         yield put(
             authError(
-                'Email or Phone No is Already Taken. Login or Try with another PhoneNo or Email !'
+                'Phone No is Already Taken. Please Try with another PhoneNo !'
             )
         );
+    }
+    yield put(loading(false));
+}
+function* loginSocial(data) {
+    try {
+        console.log('In social Login', data);
+        yield put(loading(true));
+        yield put(authError(null));
+        let response = yield call(AuthRepository.socialLogin, data.payload);
+        console.log(response);
+        yield put(loginSuccess(response));
+        modalSuccess('success', 'Login  successful!');
+        // console.log('response', response);
+    } catch (err) {
+        modalError('Unable to Login Please Try Again !');
+        yield put(authError('Unable to Login Please Try Again !'));
     }
     yield put(loading(false));
 }
@@ -98,4 +114,5 @@ export default function* rootSaga() {
     yield all([takeEvery(actionTypes.LOGOUT, logOutSaga)]);
     yield all([takeEvery(actionTypes.REGISTER_LOCAL, registerLocalSaga)]);
     yield all([takeEvery(actionTypes.UPDATE_USER, updateUserSaga)]);
+    yield all([takeEvery(actionTypes.SOCIAL_LOGIN, loginSocial)]);
 }

@@ -9,15 +9,16 @@ import _ from 'lodash';
 
 export const CheckOutLogIn = () => {
     const dispatch = useDispatch();
-    const { user } = useSelector(({ auth }) => auth);
+    const { user, error } = useSelector(({ auth }) => auth);
+    if (!user.address) user.address = {};
     const handleLoginSubmit = (e) => {
         let data = {
             address: {
-                address: user.address.address,
-                apartment: user.address.apartment,
-                city: user.address.city,
-                postalCode: user.address.postalCode,
-                provence: user.address.provence,
+                address: user?.address.address,
+                apartment: user?.address.apartment,
+                city: user?.address.city,
+                postalCode: user?.address.postalCode,
+                provence: user?.address.provence,
             },
             phone: user.phone,
         };
@@ -27,168 +28,173 @@ export const CheckOutLogIn = () => {
         // Router.push('/account/shipping');
     };
     return (
-        <Form
-            className="ps-form__billing-info"
-            initialValues={user}
-            onFinish={handleLoginSubmit}>
-            <h3 className="ps-form__heading">Contact information</h3>
-            <div className="form-group">
-                <Form.Item
-                    name="phone"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Enter an email or mobile phone number!',
-                        },
-                    ]}>
-                    <Input
-                        className="form-control"
-                        type="text"
-                        placeholder="Email or phone number"
-                    />
-                </Form.Item>
-            </div>
-            <div className="form-group">
-                <div className="ps-checkbox">
-                    <input
-                        className="form-control"
-                        type="checkbox"
-                        id="keep-update"
-                    />
-                    <label htmlFor="keep-update">
-                        Keep me up to date on news and exclusive offers?
-                    </label>
+        <>
+            <h1>The error {error}</h1>
+            <Form
+                className="ps-form__billing-info"
+                initialValues={user}
+                onFinish={handleLoginSubmit}>
+                <h3 className="ps-form__heading">Contact information</h3>
+                <div className="form-group">
+                    <Form.Item
+                        name="phone"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Mobile phone number!',
+                            },
+                        ]}>
+                        <Input
+                            className="form-control"
+                            type="text"
+                            placeholder="Email or phone number"
+                        />
+                    </Form.Item>
                 </div>
-            </div>
-            <h3 className="ps-form__heading">Shipping address</h3>
-            <div className="form-group">
-                <Form.Item
-                    name={['address', 'address']}
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Enter an address!',
-                        },
-                        {
-                            min: 8,
-                            message: 'Enter valid address!',
-                        },
-                    ]}>
-                    <Input
-                        className="form-control"
-                        type="text"
-                        placeholder="Address"
-                    />
-                </Form.Item>
-            </div>
-            <div className="row">
-                <div className="col-sm-6">
-                    <div className="form-group">
-                        <Form.Item
-                            name={['address', 'apartment']}
-                            rules={[
-                                {
-                                    required: false,
-                                    message: 'Enter an Apartment!',
-                                },
-                            ]}>
-                            <Input
-                                className="form-control"
-                                type="text"
-                                placeholder="Apartment, suite, etc. (optional)"
-                            />
-                        </Form.Item>
+                <div className="form-group">
+                    <div className="ps-checkbox">
+                        <input
+                            className="form-control"
+                            type="checkbox"
+                            id="keep-update"
+                        />
+                        <label htmlFor="keep-update">
+                            Keep me up to date on news and exclusive offers?
+                        </label>
                     </div>
                 </div>
-                <div className="col-sm-6">
-                    <div className="form-group">
-                        <Form.Item
-                            name={['address', 'provence']}
-                            label="Provence"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Choose A Provence',
-                                },
-                            ]}>
-                            <Select>
-                                <Select.Option value="Punjab">
-                                    Punjab
-                                </Select.Option>
-                                <Select.Option value="Sindh">
-                                    Sindh
-                                </Select.Option>
-                                <Select.Option value="Balochistan">
-                                    Balochistan
-                                </Select.Option>
-                                <Select.Option value="KPK">KPK</Select.Option>
-                                <Select.Option value="Gilgit">
-                                    Gilgit
-                                </Select.Option>
-                            </Select>
-                            {/* <Input
+                <h3 className="ps-form__heading">Shipping address</h3>
+                <div className="form-group">
+                    <Form.Item
+                        name={['address', 'address']}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Enter an address!',
+                            },
+                            {
+                                min: 8,
+                                message: 'Enter valid address!',
+                            },
+                        ]}>
+                        <Input
+                            className="form-control"
+                            type="text"
+                            placeholder="Address"
+                        />
+                    </Form.Item>
+                </div>
+                <div className="row">
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <Form.Item
+                                name={['address', 'apartment']}
+                                rules={[
+                                    {
+                                        required: false,
+                                        message: 'Enter an Apartment!',
+                                    },
+                                ]}>
+                                <Input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Apartment, suite, etc. (optional)"
+                                />
+                            </Form.Item>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <Form.Item
+                                name={['address', 'provence']}
+                                label="Provence"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Choose A Provence',
+                                    },
+                                ]}>
+                                <Select>
+                                    <Select.Option value="Punjab">
+                                        Punjab
+                                    </Select.Option>
+                                    <Select.Option value="Sindh">
+                                        Sindh
+                                    </Select.Option>
+                                    <Select.Option value="Balochistan">
+                                        Balochistan
+                                    </Select.Option>
+                                    <Select.Option value="KPK">
+                                        KPK
+                                    </Select.Option>
+                                    <Select.Option value="Gilgit">
+                                        Gilgit
+                                    </Select.Option>
+                                </Select>
+                                {/* <Input
                         className="form-control"
                         type="text"
                         placeholder="Apartment, suite, etc. (optional)"
                     /> */}
-                        </Form.Item>
+                            </Form.Item>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-sm-6">
-                    <div className="form-group">
-                        <Form.Item
-                            name={['address', 'city']}
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Enter a city!',
-                                },
-                                {
-                                    min: 3,
-                                    message: 'Enter a valid city!',
-                                },
-                            ]}>
-                            <Input
-                                className="form-control"
-                                type="city"
-                                placeholder="City"
-                            />
-                        </Form.Item>
+                <div className="row">
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <Form.Item
+                                name={['address', 'city']}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Enter a city!',
+                                    },
+                                    {
+                                        min: 3,
+                                        message: 'Enter a valid city!',
+                                    },
+                                ]}>
+                                <Input
+                                    className="form-control"
+                                    type="city"
+                                    placeholder="City"
+                                />
+                            </Form.Item>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <Form.Item
+                                name={['address', 'postalCode']}
+                                rules={[
+                                    {
+                                        required: false,
+                                        message: 'Enter a postal oce!',
+                                    },
+                                ]}>
+                                <Input
+                                    className="form-control"
+                                    type="postalCode"
+                                    placeholder="Postal Code"
+                                />
+                            </Form.Item>
+                        </div>
                     </div>
                 </div>
-                <div className="col-sm-6">
-                    <div className="form-group">
-                        <Form.Item
-                            name={['address', 'postalCode']}
-                            rules={[
-                                {
-                                    required: false,
-                                    message: 'Enter a postal oce!',
-                                },
-                            ]}>
-                            <Input
-                                className="form-control"
-                                type="postalCode"
-                                placeholder="Postal Code"
-                            />
-                        </Form.Item>
+                <div className="ps-form__submit">
+                    <Link href="/account/cart">
+                        <a>
+                            <i className="icon-arrow-left mr-2"></i>
+                            Return to shopping cart
+                        </a>
+                    </Link>
+                    <div className="ps-block__footer">
+                        <button className="ps-btn">Continue to shipping</button>
                     </div>
                 </div>
-            </div>
-            <div className="ps-form__submit">
-                <Link href="/account/cart">
-                    <a>
-                        <i className="icon-arrow-left mr-2"></i>
-                        Return to shopping cart
-                    </a>
-                </Link>
-                <div className="ps-block__footer">
-                    <button className="ps-btn">Continue to shipping</button>
-                </div>
-            </div>
-        </Form>
+            </Form>
+        </>
     );
 };
 

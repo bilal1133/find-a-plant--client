@@ -6,6 +6,7 @@ import { login } from '../../../store/auth/action';
 import { Form, Input, notification } from 'antd';
 import { connect } from 'react-redux';
 import Text from 'antd/lib/typography/Text';
+import { serverLink } from '~/constants/siteDetails';
 
 class Login extends Component {
     constructor(props) {
@@ -115,8 +116,7 @@ class Login extends Component {
                                     <button
                                         type="submit"
                                         className="ps-btn ps-btn--fullwidth"
-                                        disabled={this.props.loading}
-                                        >
+                                        disabled={this.props.loading}>
                                         Login
                                     </button>
                                 </div>
@@ -137,11 +137,10 @@ class Login extends Component {
                                     <li>
                                         <a
                                             className="google"
-                                            href="#"
-                                            onClick={(e) =>
-                                                this.handleFeatureWillUpdate(e)
-                                            }>
-                                            <i className="fa fa-google-plus"></i>
+                                            href={`${serverLink}/connect/google`}
+                                            target='_blank'
+                                            >
+                                            <i className="fa fa-google"></i>
                                         </a>
                                     </li>
                                     <li>
