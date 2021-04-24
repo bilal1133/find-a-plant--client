@@ -73,17 +73,15 @@ function* registerLocalSaga(data) {
 }
 function* updateUserSaga(data) {
     try {
-        console.log(data);
         yield put(loading(true));
         yield put(authError(null));
         let response = yield call(AuthRepository.updateUserData, data.payload);
-        console.log(response);
         yield put(loginSuccess(response));
-        // modalSuccess('success', 'Account Created successful!');
-        // console.log('response', response);
-        modalWarning('warning');
+        modalSuccess('success', 'Updated successful!');
+        if (data.payload.callback) {
+            data.payload.callback();
+        }
     } catch (err) {
-        // console.log('error.response', err.response.data.message[0]);
         yield put(
             authError(
                 'Phone No is Already Taken. Please Try with another PhoneNo !'

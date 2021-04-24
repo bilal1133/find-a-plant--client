@@ -46,7 +46,15 @@ class MyApp extends App {
                     loading={<Component {...pageProps} />}
                     persistor={this.persistor}>
                     <Component {...pageProps} />
+                    
                 </PersistGate>
+                <a
+                        href="https://wa.me/+923248473417"
+                        class="whatsapp_float"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fa fa-whatsapp whatsapp-icon"></i>
+                    </a>
             </Provider>
         );
     }

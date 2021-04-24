@@ -22,14 +22,20 @@ export const CheckOutLogIn = () => {
             },
             phone: user.phone,
         };
-        dispatch(updateUser({ id: user.id, data: e }));
         // console.log(e, data);
-        // console.log(_.isEqual(e, data));
-        // Router.push('/account/shipping');
+        if (_.isEqual(e, data)) {
+            Router.push('/account/shipping');
+        } else
+            dispatch(
+                updateUser({
+                    id: user.id,
+                    data: e,
+                    callback: () => Router.push('/account/shipping'),
+                })
+            );
     };
     return (
         <>
-            <h1>The error {error}</h1>
             <Form
                 className="ps-form__billing-info"
                 initialValues={user}
@@ -50,6 +56,14 @@ export const CheckOutLogIn = () => {
                             placeholder="Email or phone number"
                         />
                     </Form.Item>
+
+                    {error && (
+                        <div className="row">
+                            <h4 className="error" style={{ color: 'red' }}>
+                                {error}
+                            </h4>
+                        </div>
+                    )}
                 </div>
                 <div className="form-group">
                     <div className="ps-checkbox">

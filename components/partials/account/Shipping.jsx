@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ModulePaymentOrderSummary from '~/components/partials/account/modules/ModulePaymentOrderSummary';
+import _ from 'lodash';
 
-const Shipping = () => {
+const Shipping = ({ user }) => {
+    if (!user || !user.address) {
+        return <h1>Shipping</h1>;
+    }
+    const { address } = user || {};
+    delete address._id;
+    delete address.id;
+    delete address.__v;
+
     return (
         <div className="ps-checkout ps-section--shopping">
             <div className="container">
@@ -14,25 +23,66 @@ const Shipping = () => {
                         <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12">
                             <div className="ps-block--shipping">
                                 <div className="ps-block__panel">
+                                    <h3>Contact</h3>
                                     <figure>
-                                        <small>Contact</small>
-                                        <p>test@gmail.com</p>
-                                        <Link href="/account/checkout">
-                                            <a>Change</a>
-                                        </Link>
+                                        <div className="d-flex justify-content-between flex-wrap">
+                                            <span className={'m-2'}>
+                                                <strong>E-mail</strong>
+                                                <p>{user.email}</p>
+                                            </span>
+                                            <span className={'m-2'}>
+                                                <strong>Name</strong>
+                                                <p>{user.first_name}</p>
+                                            </span>
+                                            <span className={'m-2'}>
+                                                <strong>Phone No</strong>
+                                                <p>{user.username}</p>
+                                                <p>{user.phone}</p>
+                                            </span>
+                                        </div>
+                                    </figure>{' '}
+                                    <h3>Ship to</h3>
+                                    <figure className="mt-2">
+                                        <div className="d-flex justify-content-around flex-wrap">
+                                            {address &&
+                                                Object.keys(address).map(
+                                                    (key) => {
+                                                        return (
+                                                            <span
+                                                                key={key}
+                                                                className={
+                                                                    'm-2'
+                                                                }>
+                                                                <strong>
+                                                                    {_.startCase(
+                                                                        key
+                                                                    )}
+                                                                </strong>
+                                                                <p>
+                                                                    {
+                                                                        address[
+                                                                            key
+                                                                        ]
+                                                                    }
+                                                                </p>
+                                                            </span>
+                                                        );
+                                                    }
+                                                )}
+                                        </div>
                                     </figure>
-                                    <figure>
-                                        <small>Ship to</small>
-                                        <p>2015 South Street, Midland, Texas</p>
+                                    <span className="w-100">
                                         <Link href="/account/checkout">
-                                            <a>Change</a>
+                                            <a className={'ml-auto ps-btn'}>
+                                                Change
+                                            </a>
                                         </Link>
-                                    </figure>
+                                    </span>
                                 </div>
                                 <h4>Shipping Method</h4>
                                 <div className="ps-block__panel">
                                     <figure>
-                                        <small>International Shipping</small>
+                                        <h3>International Shipping</h3>
                                         <strong>$20.00</strong>
                                     </figure>
                                 </div>

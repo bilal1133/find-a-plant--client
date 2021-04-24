@@ -75,7 +75,7 @@ class AuthRepository {
                     },
                 }
             );
-            return response.data.user;
+            return response.data;
             // { error: JSON.stringify(error) }));
         } catch (error) {
             throw error;

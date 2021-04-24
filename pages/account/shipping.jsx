@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
-
+import { useRouter } from 'next/router';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import Shipping from '~/components/partials/account/Shipping';
 import { getCart } from '~/store/cart/action';
 import ContainerPage from '~/components/layouts/ContainerPage';
 
-const ShippingPage = () => {
+const ShippingPage = ({ auth, cart }) => {
+    const router = useRouter();
+    const { user } = auth;
     const breadCrumb = [
         {
             text: 'Home',
@@ -27,16 +29,23 @@ const ShippingPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCart());
-    }, [dispatch]);
-
+        // setTimeout(() => {
+        //     if (cart === 0) {
+        //         router.push('/account/shopping-cart');
+        //     }
+        // }, 1000);
+    }, [dispatch, cart]);
+   
     return (
         <ContainerPage title="Shipping" boxed={true}>
             <div className="ps-page--simple">
                 <BreadCrumb breacrumb={breadCrumb} />
-                <Shipping />
+                <Shipping user={user} />
             </div>
         </ContainerPage>
     );
 };
 
-export default connect()(ShippingPage);
+export default connect(({ auth, cart }) => {
+    return { auth, cart: cart.cartItems.length };
+})(ShippingPage);
