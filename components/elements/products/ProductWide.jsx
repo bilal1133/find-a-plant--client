@@ -19,7 +19,7 @@ const ProductWide = ({ product }) => {
                     <p className="ps-product__vendor">
                         Sold by:
                         <Link href="/shop">
-                            <a>{product.store.store_name}</a>
+                            <a>{product.store?.store_name}</a>
                         </Link>
                     </p>
                     <ul className="ps-product__desc">{product.description}</ul>

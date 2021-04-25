@@ -8,4 +8,4 @@ export const twitterLink = 'contact@martfury.co';
 export const googleLink = 'contact@martfury.co';
 
 // Server Link
-export const serverLink = 'http://localhost:1337'
+export const serverLink = 'https://find-a-plant--server.herokuapp.com'
