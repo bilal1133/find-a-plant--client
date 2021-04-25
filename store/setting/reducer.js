@@ -2,8 +2,8 @@ import { actionTypes } from './action';
 
 export const initialState = {
     currency: {
-        symbol: '$',
-        text: 'USD',
+        symbol: 'Rs.',
+        text: 'Pkr',
     },
 };
 

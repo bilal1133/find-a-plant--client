@@ -6,7 +6,7 @@ import Shipping from '~/components/partials/account/Shipping';
 import { getCart } from '~/store/cart/action';
 import ContainerPage from '~/components/layouts/ContainerPage';
 
-const ShippingPage = ({ auth, cart }) => {
+const ShippingPage = ({ auth, cart ,totalAmount}) => {
     const router = useRouter();
     const { user } = auth;
     const breadCrumb = [
@@ -40,12 +40,12 @@ const ShippingPage = ({ auth, cart }) => {
         <ContainerPage title="Shipping" boxed={true}>
             <div className="ps-page--simple">
                 <BreadCrumb breacrumb={breadCrumb} />
-                <Shipping user={user} />
+                <Shipping user={user} totalAmount={totalAmount} />
             </div>
         </ContainerPage>
     );
 };
 
 export default connect(({ auth, cart }) => {
-    return { auth, cart: cart.cartItems.length };
+    return { auth, cart: cart.cartItems.length,totalAmount:cart.amount };
 })(ShippingPage);

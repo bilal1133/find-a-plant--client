@@ -71,7 +71,7 @@ const Shipping = ({ user }) => {
                                                 )}
                                         </div>
                                     </figure>
-                                    <span className="w-100">
+                                    <span className="mt-5 w-100 d-flex justify-content-end">
                                         <Link href="/account/checkout">
                                             <a className={'ml-auto ps-btn'}>
                                                 Change
@@ -80,12 +80,12 @@ const Shipping = ({ user }) => {
                                     </span>
                                 </div>
                                 <h4>Shipping Method</h4>
-                                <div className="ps-block__panel">
+                                {/* <div className="ps-block__panel">
                                     <figure>
                                         <h3>International Shipping</h3>
                                         <strong>$20.00</strong>
                                     </figure>
-                                </div>
+                                </div> */}
                                 <div className="ps-block__footer">
                                     <Link href="/account/checkout">
                                         <a>

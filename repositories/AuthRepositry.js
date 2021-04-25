@@ -71,7 +71,7 @@ class AuthRepository {
                 {
                     headers: {
                         Authorization:
-                            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMjg2MWFlZGU5Zjg0MjJhOGM5ZTFhOSIsImlhdCI6MTYxODY1MzQyMCwiZXhwIjoxNjIxMjQ1NDIwfQ.rIaqmEZu_n4qVhrdGBqcNfL7du1t-MLdJH96ScMjaVY',
+                            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwODUwYjNhNTY5MzY0M2Y5ODEwMjE2YSIsImlhdCI6MTYxOTMzMTkwMSwiZXhwIjoxNjIxOTIzOTAxfQ.U4efJMAMslI8KsfGrSlwzlv4H4b9RoemsXQwrANhCbs',
                     },
                 }
             );

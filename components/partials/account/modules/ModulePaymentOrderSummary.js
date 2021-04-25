@@ -2,7 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 
-const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
+const ModulePaymentOrderSummary = ({ shipping,cart,currency }) => {
+    
+    const { amount, cartItems}=cart;
     let listItemsView, shippingView, totalView;
     if (cartItems && cartItems.length > 0) {
         listItemsView = cartItems.map(product => (
@@ -10,9 +12,9 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
                 <a>
                     <strong>
                         {product.title}
-                        <span>x{product.quantity}</span>
+                        <span>X {product.quantity}</span>
                     </strong>
-                    <small>${product.quantity * product.price}</small>
+                    <small>{currency.symbol} {product.quantity * product.price}</small>
                 </a>
             </Link>
         ));
@@ -24,7 +26,7 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
             <figure>
                 <figcaption>
                     <strong>Shipping Fee</strong>
-                    <small>$20.00</small>
+                    <small>{currency.symbol} 200</small>
                 </figcaption>
             </figure>
         );
@@ -32,7 +34,7 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
             <figure className="ps-block__total">
                 <h3>
                     Total
-                    <strong>${parseInt(amount) + 20}.00</strong>
+                    <strong>{currency.symbol} {parseInt(amount) + 200}.00</strong>
                 </h3>
             </figure>
         );
@@ -41,7 +43,7 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
             <figure className="ps-block__total">
                 <h3>
                     Total
-                    <strong>${parseInt(amount)}.00</strong>
+                    <strong>{currency.symbol} {parseInt(amount)}.00</strong>
                 </h3>
             </figure>
         );
@@ -59,7 +61,7 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
                 <figure>
                     <figcaption>
                         <strong>Subtotal</strong>
-                        <small>${amount}</small>
+                        <small>{currency.symbol} {amount}</small>
                     </figcaption>
                 </figure>
                 {shippingView}
@@ -68,4 +70,4 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
         </div>
     );
 };
-export default connect(state => state.cart)(ModulePaymentOrderSummary);
+export default connect(state => ({cart:state.cart,currency:state.setting.currency}))(ModulePaymentOrderSummary);
