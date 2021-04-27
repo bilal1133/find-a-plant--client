@@ -21,7 +21,7 @@ import '~/scss/market-place-1.scss';
 // import '~/scss/autopart.scss';
 // import '~/scss/electronic.scss';
 import '~/scss/custom.scss';
-
+import Loading from '~/components/Loading';
 class MyApp extends App {
     constructor(props) {
         super(props);
@@ -42,6 +42,7 @@ class MyApp extends App {
             ((page) => <DefaultLayout children={page} />);
         return getLayout(
             <Provider store={store}>
+             <Loading  />
                 <PersistGate
                     loading={<Component {...pageProps} />}
                     persistor={this.persistor}>
