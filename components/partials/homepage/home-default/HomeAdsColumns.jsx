@@ -20,7 +20,7 @@ const HomeAdsColumns = () => {
         }
     }
     useEffect(() => {
-        getPromotions();
+        // getPromotions();
     }, []);
     return (
         <div className="ps-home-ads">
@@ -30,18 +30,21 @@ const HomeAdsColumns = () => {
                         <Promotion
                             link="/shop"
                             image={promotion1 ? promotion1.image : null}
-                        />
+                            img="/static/img/ads/1.png"
+                            />
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                         <Promotion
                             link="/shop"
                             image={promotion2 ? promotion2.image : null}
-                        />
+                            img="/static/img/ads/2.png"
+                            />
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                         <Promotion
                             link="/shop"
                             image={promotion3 ? promotion3.image : null}
+                            img="/static/img/ads/3.png"
                         />
                     </div>
                 </div>

@@ -2,7 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { baseUrl } from '~/repositories/Repository';
 
-const Promotion = ({ link, image }) => {
+const Promotion = ({ link, image, img }) => {
+    if (img) {
+        return (
+            <Link href={'/shop'}>
+                <a className="ps-collection">
+                    <img src={img} alt="martfury" />
+                </a>
+            </Link>
+        );
+    }
     if (image) {
         return (
             <Link href={link}>

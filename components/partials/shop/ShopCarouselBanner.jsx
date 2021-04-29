@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Slider from 'react-slick';
 import { carouselSingle } from '~/utilities/carousel-helpers';
+import { siteName } from '~/constants/siteDetails';
 
 const ShopCarouselBanner = () => {
 
@@ -11,16 +12,16 @@ const ShopCarouselBanner = () => {
                 <div className="item">
                     <Link href="/shop">
                         <img
-                            src="/static/img/slider/shop-default/1.jpg"
-                            alt="martfury"
+                            src="/static/img/slider/shop/shop1.jpg"
+                            alt={siteName}
                         />
                     </Link>
                 </div>
                 <div className="item">
                     <Link href="/shop">
                         <img
-                            src="/static/img/slider/shop-default/2.jpg"
-                            alt="martfury"
+                            src="/static/img/slider/shop/shop1.jpg"
+                            alt={siteName}
                         />
                     </Link>
                 </div>
