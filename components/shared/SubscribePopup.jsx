@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { siteName } from '~/constants/siteDetails';
 
 class SubscribePopup extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class SubscribePopup extends Component {
                         <a
                             className="ps-popup__close"
                             href="#"
-                            onClick={e => this.handleCloseSubscribePopup(e)}>
+                            onClick={(e) => this.handleCloseSubscribePopup(e)}>
                             <i className="icon-cross"></i>
                         </a>
                         <form
@@ -43,7 +44,7 @@ class SubscribePopup extends Component {
                                     Get <strong>25%</strong> Discount
                                 </h4>
                                 <p>
-                                    Subscribe to the Martfury mailing list{' '}
+                                    Subscribe to the {siteName} mailing list{' '}
                                     <br /> to receive updates on new arrivals,
                                     special offers
                                     <br /> and our promotions.

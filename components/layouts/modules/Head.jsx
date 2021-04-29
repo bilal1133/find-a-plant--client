@@ -1,9 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
+import { siteName, siteDetail } from '~/constants/siteDetails';
 
 const StyleSheets = () => (
     <Head>
-        <title>Martfury - React eCommerce Template</title>
+        <title>
+            {siteName} - {siteDetail}
+        </title>
         <link rel="shortcut icon" href="/static/img/favi.png" />
         <link rel="icon" href="/static/img/favi.png" sizes="32x32" />
         <link rel="icon" href="/static/img/favi.png" sizes="192x192" />
@@ -12,9 +15,12 @@ const StyleSheets = () => (
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="author" content="nouthemes" />
-        <meta name="keywords" content="Martfury, React, eCommerce, Template" />
-        <meta name="description" content="Martfury - React eCommerce Template" />
+        <meta name="author" content="bmehmood199#gmail.com" />
+        <meta
+            name="keywords"
+            content="Plant, Nursery, Lahore, DHA, LandScaping,  Land Scaping, "
+        />
+        <meta name="description" content={` ${siteName} - ${siteDetail}`} />
         <link
             href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext"
             rel="stylesheet"
@@ -28,7 +34,7 @@ const StyleSheets = () => (
             rel="stylesheet"
             href="/static/fonts/font-awesome/css/font-awesome.min.css"
         />
-        
+
         <link
             rel="stylesheet"
             type="text/css"

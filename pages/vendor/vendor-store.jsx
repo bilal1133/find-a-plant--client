@@ -6,6 +6,7 @@ import HeaderDefault from '../../components/shared/headers/HeaderDefault';
 import VendorStore from '../../components/partials/vendor/VendorStore';
 import HeaderMobile from '../../components/shared/headers/HeaderMobile';
 import NavigationList from '../../components/shared/navigation/NavigationList';
+import Map from '~/components/elements/Map/Map';
 
 const VendorStorePage = () => {
     const breadCrumb = [
@@ -27,6 +28,7 @@ const VendorStorePage = () => {
                 <BreadCrumb breacrumb={breadCrumb} />
                 <VendorStore />
             </div>
+            <Map />
             <Newletters layout="container" />
             <FooterDefault />
         </div>

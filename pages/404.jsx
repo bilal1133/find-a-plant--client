@@ -12,14 +12,18 @@ function Error({ statusCode }) {
                 <div className="container">
                     <div className="ps-section__content">
                         <figure>
-                            <img src="/static/img/404.jpg" alt="" />
+                            <img src="/static/img/404.svg" alt="" />
                             <h3>Ohh! Page not found</h3>
                             <p>
                                 It seems we can't find what you're looking for.{' '}
                                 <br />
                                 Go back to
                                 <Link href="/">
-                                    <a> Homepage</a>
+                                    <a>
+                                        <strong className="ml-3">
+                                            Homepage
+                                        </strong>{' '}
+                                    </a>
                                 </Link>
                             </p>
                         </figure>

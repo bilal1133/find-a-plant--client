@@ -10,10 +10,11 @@ import HomeDefaultTopCategories from '~/components/partials/homepage/home-defaul
 import ContainerHomeDefault from '~/components/layouts/ContainerHomeDefault';
 import HomeDefaultProductListing from '~/components/partials/homepage/home-default/HomeDefaultProductListing';
 import HomeDefaultBanner from '~/components/partials/homepage/home-default/HomeDefaultBanner';
+import SubscribePopup from '~/components/shared/SubscribePopup';
 
 const HomepageDefaultPage = () => {
     return (
-        <ContainerHomeDefault title="Multipurpose Marketplace React Ecommerce Template">
+        <ContainerHomeDefault title="Take care your Garden online.">
             <HomeDefaultBanner />
             <SiteFeatures />
             <HomeDefaultDealOfDay collectionSlug="deal-of-the-day" />
@@ -35,6 +36,7 @@ const HomepageDefaultPage = () => {
             {/* <DownLoadApp /> */}
             <NewArrivals collectionSlug="New-arrivals-products" />
             <Newletters />
+            <SubscribePopup active={false} />
         </ContainerHomeDefault>
     );
 };
