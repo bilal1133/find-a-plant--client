@@ -138,7 +138,7 @@ class NavigationList extends Component {
                     visible={this.state.categoriesDrawer}>
                     <div className="ps-panel--wrapper">
                         <div className="ps-panel__header">
-                            <h3>Categories</h3>
+                            <h3>Services</h3>
                             <span
                                 className="ps-panel__close"
                                 onClick={this.handleDrawerClose}>
@@ -146,7 +146,7 @@ class NavigationList extends Component {
                             </span>
                         </div>
                         <div className="ps-panel__content">
-                            <PanelCategories />
+                            <PanelCategories close={this.handleDrawerClose} />
                         </div>
                     </div>
                 </Drawer>
@@ -165,7 +165,7 @@ class NavigationList extends Component {
                         }`}
                         onClick={this.handleShowCategoriesDrawer}>
                         <i className="icon-list4"></i>
-                        <span> Categories</span>
+                        <span> Services</span>
                     </a>
                     <a
                         className={`navigation__item ${

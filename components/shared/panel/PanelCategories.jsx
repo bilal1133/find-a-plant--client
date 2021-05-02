@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
 import Link from 'next/link';
-import categories from '../../../public/static/data/static-categories.json';
+import services from '../../../public/static/data/services.json';
 
 const { SubMenu } = Menu;
 
@@ -15,9 +15,9 @@ class PanelCategories extends Component {
     state = {
         openKeys: ['sub1'],
     };
-    onOpenChange = openKeys => {
+    onOpenChange = (openKeys) => {
         const latestOpenKey = openKeys.find(
-            key => this.state.openKeys.indexOf(key) === -1
+            (key) => this.state.openKeys.indexOf(key) === -1
         );
         if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
             this.setState({ openKeys });
@@ -34,11 +34,10 @@ class PanelCategories extends Component {
                 mode="inline"
                 openKeys={this.state.openKeys}
                 onOpenChange={this.onOpenChange}>
-                {categories.map(category => (
-                    <Menu.Item key={category.id}>
-                        <a href={`/shop?category=${category.slug}`}>
-                            {category.name}
-                        </a>
+                {services.map((category) => (
+                    <Menu.Item key={category.id} onClick={this.props.close}>
+                        {/* <a href={`/shop?category=${category.slug}`}> */}
+                        <a href={`#`}>{category.name}</a>
                     </Menu.Item>
                 ))}
             </Menu>

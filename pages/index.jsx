@@ -1,10 +1,10 @@
 import React from 'react';
 
 import SiteFeatures from '~/components/partials/homepage/home-default/SiteFeatures';
-import HomeAdsColumns from '~/components/partials/homepage/home-default/HomeAdsColumns';
+// import HomeAdsColumns from '~/components/partials/homepage/home-default/HomeAdsColumns';
 // import HomeAds from '~/components/partials/homepage/home-default/HomeAds';
 // import DownLoadApp from '~/components/partials/commons/DownLoadApp';
-import NewArrivals from '~/components/partials/homepage/home-default/NewArrivals';
+// import NewArrivals from '~/components/partials/homepage/home-default/NewArrivals';
 import Newletters from '~/components/partials/commons/Newletters';
 import HomeDefaultDealOfDay from '~/components/partials/homepage/home-default/HomeDefaultDealOfDay';
 import HomeDefaultTopCategories from '~/components/partials/homepage/home-default/HomeDefaultTopCategories';
@@ -39,9 +39,9 @@ const HomepageDefaultPage = () => {
             {/* <HomeAds /> */}
             {/* <DownLoadApp /> */}
             {/* <NewArrivals collectionSlug="New-arrivals-products" /> */}
+            <Map/>
             <Newletters />
             <SubscribePopup active={false} />
-            <Map/>
         </ContainerHomeDefault>
     );
 };

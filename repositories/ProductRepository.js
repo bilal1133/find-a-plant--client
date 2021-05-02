@@ -13,6 +13,7 @@ class ProductRepository {
     }
 
     async getProducts(params) {
+        console.log('params', params);
         const reponse = await Repository.get(
             `${baseUrl}/products?${serializeQuery(params)}`
         )

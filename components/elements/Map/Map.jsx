@@ -74,7 +74,7 @@ const Map = () => {
     return (
         <div>
             <h1 className="near-you">
-                Nurseries In<span> Lahore</span>
+                Find us In<span> Lahore 🗺</span>
             </h1>
             <LoadScript googleMapsApiKey={googleMapsApiKey}>
                 <GoogleMap

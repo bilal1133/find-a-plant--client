@@ -22,6 +22,9 @@ import '~/scss/market-place-1.scss';
 // import '~/scss/electronic.scss';
 import '~/scss/custom.scss';
 import Loading from '~/components/Loading';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+
+const queryClient = new QueryClient();
 class MyApp extends App {
     constructor(props) {
         super(props);
@@ -42,20 +45,21 @@ class MyApp extends App {
             ((page) => <DefaultLayout children={page} />);
         return getLayout(
             <Provider store={store}>
-             <Loading  />
-                <PersistGate
-                    loading={<Component {...pageProps} />}
-                    persistor={this.persistor}>
-                    <Component {...pageProps} />
-                    
-                </PersistGate>
-                <a
+                <QueryClientProvider client={queryClient}>
+                    <Loading />
+                    <PersistGate
+                        loading={<Component {...pageProps} />}
+                        persistor={this.persistor}>
+                        <Component {...pageProps} />
+                    </PersistGate>
+                    <a
                         href="https://wa.me/+923248473417"
                         class="whatsapp_float"
                         target="_blank"
                         rel="noopener noreferrer">
                         <i class="fa fa-whatsapp whatsapp-icon"></i>
                     </a>
+                </QueryClientProvider>
             </Provider>
         );
     }

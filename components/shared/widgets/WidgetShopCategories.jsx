@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Tree } from 'antd';
 import _ from 'lodash';
-
+import product_categories from '~/public/static/data/plant-categories.json';
 const WidgetShopCategories = () => {
     const Router = useRouter();
     const [categories, setCategories] = useState(null);
@@ -14,11 +14,13 @@ const WidgetShopCategories = () => {
 
     async function getCategories() {
         setLoading(true);
-        const responseData = await ProductRepository.getProductCategories();
-        if (responseData) {
-            setCategories(responseData);
-            setLoading(false);
-        }
+        setCategories(product_categories);
+        // const responseData = await ProductRepository.getProductCategories();
+        // if (responseData) {
+        //     setCategories(responseData);
+        //     // console.log(responseData);
+        // }
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -46,7 +48,7 @@ const WidgetShopCategories = () => {
 
     return (
         <aside className="widget widget_shop">
-            <h4 className="widget-title">Categories</h4>
+            <h2 className="widget-title near-you">Categories</h2>
             <Tree
                 // onSelect={onSelect}
                 // onCheck={onCheck}
@@ -55,11 +57,12 @@ const WidgetShopCategories = () => {
                     return (
                         <Link
                             href={`/shop?product_categories.slug=${item.slug}`}>
-                            <a
-                                className={item.slug === slug ? 'active' : ''}
-                                dangerouslySetInnerHTML={{
-                                    __html: `${item.name}`,
-                                }}></a>
+                            <a className={item.slug === slug ? 'active' : ''}>
+                                <strong
+                                    dangerouslySetInnerHTML={{
+                                        __html: `${item.name}`,
+                                    }}></strong>
+                            </a>
                         </Link>
                     );
                     // return _.name;
