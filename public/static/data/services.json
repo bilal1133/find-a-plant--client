@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Residential",
+        "des": "We create awe inspiring residential landscapes.",
+        "img": "/static/img/residential.jpg"
+    },
+    {
+        "name": "COMMERCIAL",
+        "des": "Large scale commercial landscape architecture and design are our specialty.",
+        "img": "/static/img/commercial.jpg"
+    },
+    {
+        "name": "Landscaping",
+        "des": " Our landscape maintenance programs are customized to meet our clients needs. We also GUARANTEE low and affordable pricing",
+        "img": "/static/img/landscaping.jpg"
+    },
+    {
+        "name": "Irrigation",
+        "des": "Water Efficent Irrigation, include Water dripping.",
+        "img": "/static/img/irrigation.png"
+    },
+    {
+        "name": "Lighting",
+        "des": "Under Water Pool Lighting,Garden Lighting. ",
+        "img": "/static/img/lighting.png"
+    },
+    {
+        "name": "Maintenance",
+        "des": "Large Scale Maintenance to keep your landscapes green.",
+        "img": "/static/img/maintenance.jpg"
+    }
+]

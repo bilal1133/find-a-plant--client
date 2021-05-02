@@ -1,3 +1,5 @@
+import React from 'react';
+
 import SiteFeatures from '~/components/partials/homepage/home-default/SiteFeatures';
 import HomeAdsColumns from '~/components/partials/homepage/home-default/HomeAdsColumns';
 // import HomeAds from '~/components/partials/homepage/home-default/HomeAds';
@@ -10,6 +12,8 @@ import ContainerHomeDefault from '~/components/layouts/ContainerHomeDefault';
 import HomeDefaultProductListing from '~/components/partials/homepage/home-default/HomeDefaultProductListing';
 import HomeDefaultBanner from '~/components/partials/homepage/home-default/HomeDefaultBanner';
 import SubscribePopup from '~/components/shared/SubscribePopup';
+import OurServices from '~/components/partials/custome/OurServices';
+import Map from '~/components/elements/Map/Map';
 
 const HomepageDefaultPage = () => {
     return (
@@ -17,7 +21,8 @@ const HomepageDefaultPage = () => {
             <HomeDefaultBanner />
             <SiteFeatures />
             <HomeDefaultDealOfDay collectionSlug="deal-of-the-day" />
-            <HomeAdsColumns />
+            {/* <HomeAdsColumns /> */}
+            <OurServices />
             <HomeDefaultTopCategories />
             <HomeDefaultProductListing
                 collectionSlug="plant-and-tree"
@@ -33,9 +38,10 @@ const HomepageDefaultPage = () => {
             />
             {/* <HomeAds /> */}
             {/* <DownLoadApp /> */}
-            <NewArrivals collectionSlug="New-arrivals-products" />
+            {/* <NewArrivals collectionSlug="New-arrivals-products" /> */}
             <Newletters />
             <SubscribePopup active={false} />
+            <Map/>
         </ContainerHomeDefault>
     );
 };

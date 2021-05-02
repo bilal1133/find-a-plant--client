@@ -72,41 +72,46 @@ const Map = () => {
         setSelected(item);
     };
     return (
-        <LoadScript googleMapsApiKey={googleMapsApiKey}>
-            <GoogleMap
-                mapContainerStyle={mapStyles}
-                zoom={13}
-                center={currentPosition}>
-                {currentPosition.lat ? (
-                    <Marker
-                        position={currentPosition}
-                        onDragEnd={(e) => onMarkerDragEnd(e)}
-                        draggable={true}
-                    />
-                ) : null}
-                {locations.map((item) => {
-                    return (
+        <div>
+            <h1 className="near-you">
+                Nurseries In<span> Lahore</span>
+            </h1>
+            <LoadScript googleMapsApiKey={googleMapsApiKey}>
+                <GoogleMap
+                    mapContainerStyle={mapStyles}
+                    zoom={13}
+                    center={currentPosition}>
+                    {currentPosition.lat ? (
                         <Marker
-                            key={item.name}
-                            onClick={() => onSelect(item)}
-                            position={item.location}
+                            position={currentPosition}
+                            onDragEnd={(e) => onMarkerDragEnd(e)}
+                            draggable={true}
                         />
-                    );
-                })}
-                {selected.location && (
-                    <InfoWindow
-                        position={selected.location}
-                        clickable={true}
-                        onCloseClick={() => setSelected({})}>
-                        <>
-                            <h1>{selected.name}</h1>
-                            <Divider orientation="left">Large Size</Divider>
-                            <h1>{selected.name}</h1>
-                        </>
-                    </InfoWindow>
-                )}
-            </GoogleMap>
-        </LoadScript>
+                    ) : null}
+                    {locations.map((item) => {
+                        return (
+                            <Marker
+                                key={item.name}
+                                onClick={() => onSelect(item)}
+                                position={item.location}
+                            />
+                        );
+                    })}
+                    {selected.location && (
+                        <InfoWindow
+                            position={selected.location}
+                            clickable={true}
+                            onCloseClick={() => setSelected({})}>
+                            <>
+                                <h1>{selected.name}</h1>
+                                <Divider orientation="left">Large Size</Divider>
+                                <h1>{selected.name}</h1>
+                            </>
+                        </InfoWindow>
+                    )}
+                </GoogleMap>
+            </LoadScript>
+        </div>
     );
 };
 export default Map;
