@@ -28,7 +28,7 @@ const VendorStorePage = () => {
                 <BreadCrumb breacrumb={breadCrumb} />
                 <VendorStore />
             </div>
-            <Map />
+            {/* <Map /> */}
             <Newletters layout="container" />
             <FooterDefault />
         </div>
