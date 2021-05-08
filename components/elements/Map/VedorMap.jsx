@@ -14,17 +14,17 @@ const mapStyles = {
     width: '100%',
 };
 const VendorMap = ({ name, location }) => {
-    if (!location.lat) {
-        location = { lat: 31.457954, lng: 74.441819 };
+    if (!location.lat || !location.lat) {
+        location = { lat: 31.482203, lng: 74.441819 };
     }
-    const [selected, setSelected] = useState({});
+    const [selected, setSelected] = useState(null);
     const onSelect = (item) => {
         setSelected(item);
     };
     return (
         <div>
             <h1 className="near-you">
-                Find<span> Us 🏳</span>
+                Find<span> Us </span>
             </h1>
             <LoadScript googleMapsApiKey={googleMapsApiKey}>
                 <GoogleMap

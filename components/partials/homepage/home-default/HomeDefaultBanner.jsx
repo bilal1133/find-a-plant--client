@@ -7,9 +7,11 @@ import MediaRepository from '~/repositories/MediaRepository';
 import { baseUrl } from '~/repositories/Repository';
 import { getItemBySlug } from '~/utilities/product-helper';
 import Promotion from '~/components/elements/media/Promotion';
-
+import bannerData from '~/public/static/data/homeBanner.json';
+import { Carousel } from 'antd';
+import Head from 'next/head';
 const HomeDefaultBanner = () => {
-    const [bannerItems, setBannerItems] = useState(null);
+    const [bannerItems, setBannerItems] = useState(bannerData);
     const [promotion1, setPromotion1] = useState(null);
     const [promotion2, setPromotion2] = useState(null);
 
@@ -17,6 +19,7 @@ const HomeDefaultBanner = () => {
         const responseData = await MediaRepository.getBannersBySlug(
             'banner-home-fullwidth'
         );
+        console.log('responseData', responseData);
         if (responseData) {
             setBannerItems(responseData);
         }
@@ -33,7 +36,7 @@ const HomeDefaultBanner = () => {
     }
 
     useEffect(() => {
-        getBannerItems();
+        // getBannerItems();
         getPromotions();
     }, []);
 
@@ -49,30 +52,59 @@ const HomeDefaultBanner = () => {
     };
 
     // Views
-    let mainCarouselView;
-    if (bannerItems) {
-        const carouseItems = bannerItems.map((item) => (
-            <div className="slide-item" key={item.id}>
+    let mainCarouselView, myCarousel;
+    if (bannerItems?.items) {
+        const carouseItems = bannerItems.items.map((item) => (
+            <div key={item.id}>
                 <Link href="/shop">
                     <a
-                        className="ps-banner-item--default bg--cover"
+                        className="ps-banner-item--default"
                         style={{
-                            backgroundImage: `url(${baseUrl}${item.image.url})`,
-                        }}
-                    />
+                            backgroundImage: `url(${item.image.url})`,
+                            backgroundSize: '100% 100%',
+                        }}>
+                        {/* "title": "Indoor Freshness",
+            "desc": "Grow Plants in your Garden",
+            "btn_text": "Shop Now",
+            "text_on_top": "Fina Plant", */}
+                        <div class="hdb-slide-content ">
+                            <span className="m-sm-4 m-lg-3">
+                                <h3 class="hd-slide__title">{item.title}</h3>
+                                <div class="hdb-slide__text">{item.desc}</div>
+                            </span>
+                            <div class=" ">
+                                <span class="hdb-slide__button ps-btn m-sm-4 m-lg-3 animate__animated animate__bounce animate__delay-2s animate__infinite">
+                                    {item.btn_text}
+                                </span>
+                            </div>
+                        </div>
+                    </a>
                 </Link>
             </div>
         ));
-        mainCarouselView = (
-            <Slider {...carouselSetting} className="ps-carousel">
+
+        myCarousel = (
+            <Carousel autoplay style={{ height: '100%' }}>
                 {carouseItems}
-            </Slider>
+            </Carousel>
         );
+        // mainCarouselView = (
+        //     <Slider {...carouselSetting} className="ps-carousel">
+
+        //     </Slider>
+        // );
     }
+
     return (
         <div className="ps-home-banner ps-home-banner--1">
+            <Head>
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+                />
+            </Head>
             <div className="ps-container">
-                <div className="ps-section__left">{mainCarouselView}</div>
+                <div className="ps-section__left">{myCarousel}</div>
                 <div className="ps-section__right">
                     <Promotion
                         link="/shop"

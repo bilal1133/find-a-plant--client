@@ -73,7 +73,7 @@ const VendorStore = () => {
                                     </form>
                                 </div>
                             </div>
-                            <VendorProducts data={storeData} />
+                            <VendorProducts data={prodData} />
                         </div>
                     </div>
                 </div>
@@ -95,6 +95,13 @@ export default VendorStore;
 
 const VendorProfile = ({ data }) => {
     if (!data) return null;
+    console.log(data);
+    const social = data.social;
+    if (social) {
+        delete social.id;
+        delete social.__v;
+        delete social._id;
+    }
     return (
         <div className="ps-block--vendor" style={{ backgroundColor: 'green' }}>
             <div className="ps-block__thumbnail">
@@ -102,14 +109,13 @@ const VendorProfile = ({ data }) => {
                     <img
                         src={`${baseUrl}${data.profile_image.url}`}
                         alt={data.store_name}
+                        onError={function (e) {
+                            console.log('ERROR', e);
+                            e.target.src =
+                                'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.W1fDzc69LNG8XTNGzl6KXwHaHa%26pid%3DApi&f=1';
+                        }}
                     />
                 </LazyLoad>
-                {/* <img
-                    src="/static/img/vendor/vendor-store.jpg"
-                    alt="martfury"
-                    // src={}
-                    // onError="this.onError=null;this.src='/static/img/vendor/vendor-store.jpg'"
-                /> */}
             </div>
             <div className="ps-block__container">
                 <div className="ps-block__header">
@@ -133,39 +139,22 @@ const VendorProfile = ({ data }) => {
                         {data.Address.city}
                         {data.Address.provence}
                     </p>
-                    {data.social && (
+                    {social && (
                         <figure>
                             <figcaption>Folow us on social</figcaption>
                             <ul className="ps-list--social-color">
-                                {Object.keys(data.social).map((key, i) => {
-                                    console.log('key', data.social);
+                                {Object.keys(social).map((key, i) => {
                                     return (
                                         <li key={key + i}>
                                             <a
-                                                className={data}
-                                                href={data.social[key]}>
+                                                className={key}
+                                                href={social[key]}>
                                                 <i
                                                     className={`fa fa-${key}`}></i>
                                             </a>
                                         </li>
                                     );
                                 })}
-                                {/* 
-                            <li>
-                                <a className="twitter" href="#">
-                                    <i className="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a className="linkedin" href="#">
-                                    <i className="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a className="feed" href="#">
-                                    <i className="fa fa-feed"></i>
-                                </a>
-                            </li> */}
                             </ul>
                         </figure>
                     )}{' '}
@@ -173,14 +162,28 @@ const VendorProfile = ({ data }) => {
                 <div className="ps-block__footer">
                     <p>
                         Call us directly
-                        <strong>(+053) 77-637-3300</strong>
+                        <span className="d-flex justify-content-around align-items-center">
+                            <strong>(+92) {data.contact_no}</strong>
+                            <a href={`tel:${data.contact_no}`} className="btn">
+                                <i
+                                    className="fa fa-phone  fa-3x"
+                                    aria-hidden="true"></i>
+                            </a>
+                        </span>
                     </p>
-                    <p>or Or if you have any question</p>
+                    <p>Or if you have any question</p>
                     <a
+                        href={`https://wa.me/+92${data.contact_no}`}
                         className="ps-btn ps-btn--fullwidth"
-                        href={`tel:${data.contact_no}`}>
-                        Contact Seller{' '}
-                        <i className="fa fa-phone" aria-hidden="true"></i>
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Chatt With us
+                        <i
+                            className="fa fa-whatsapp "
+                            style={{
+                                fontSize: '25px',
+                                'marginLeft': ' 13px',
+                            }}></i>
                     </a>
                 </div>
             </div>

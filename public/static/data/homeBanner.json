@@ -1,0 +1,53 @@
+{
+    "_id": "6096689afd3aa4273c3f2188",
+    "slug": "banner-home-fullwidth",
+    "name": "banner-home-fullwidth",
+    "items": [
+        {
+            "isImage": true,
+            "_id": "6096689bfd3aa4273c3f2189",
+            "title": "Indoor Freshness",
+            "desc": "Grow Plants in your Garden",
+            "btn_text": "Shop Now",
+            "text_on_top": "Fina Plant",
+            "__v": 0,
+            "image": {
+                "alternativeText": "",
+                "url": "/static/img/slider/home-1/find-plant.png"
+            },
+            "id": "6096689bfd3aa4273c3f2189"
+        },
+        {
+            "isImage": true,
+            "_id": "6096689bfd3aa4273c3f2189",
+            "title": "Indoor Freshness",
+            "desc": "Grow Plants in your Garden",
+            "btn_text": "Shop Now",
+            "text_on_top": "Find Plant",
+            "__v": 0,
+            "image": {
+                "alternativeText": "",
+                "url": "/static/img/slider/home-1/garden-2.png"
+            },
+            "id": "6096689bfd3aa4273c3f2189"
+        },
+        {
+            "isImage": true,
+            "_id": "6096689bfd3aa4273c3f2189",
+            "title": "Indoor Freshness",
+            "desc": "Grow Plants in your Garden",
+            "btn_text": "Shop Now",
+            "text_on_top": "Fina Plant",
+            "__v": 0,
+            "image": {
+                "alternativeText": "",
+                "url": "/static/img/slider/home-1/garden-1.png"
+            },
+            "id": "6096689bfd3aa4273c3f2189"
+        }
+    ],
+    "createdAt": "2021-05-08T10:31:54.994Z",
+    "updatedAt": "2021-05-08T10:31:58.183Z",
+    "__v": 1,
+    "id": "6096689afd3aa4273c3f2188"
+}

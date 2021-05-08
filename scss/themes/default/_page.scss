@@ -18,6 +18,10 @@
                     height: 100%;
                     * {
                         height: 100%;
+                        
+                    }
+                    .hdb-slide-content {
+                        height: auto;
                     }
                 }
             }
@@ -82,7 +86,7 @@
             }
         }
 
-        @include media("<xs") {
+        @include media('<xs') {
             .ps-section__left {
                 height: 150px;
             }
@@ -92,7 +96,6 @@
     .ps-site-features {
         padding-bottom: 90px;
         @media screen and (max-width: 480px) {
-
         }
     }
 

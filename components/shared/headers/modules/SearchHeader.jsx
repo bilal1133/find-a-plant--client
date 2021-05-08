@@ -6,19 +6,37 @@ import ProductRepository from '~/repositories/ProductRepository';
 import ProductSearchResult from '~/components/elements/products/ProductSearchResult';
 import { exampleCategories } from '~/constants/productCategories';
 
+// function useDebounce(value, delay) {
+//     const [debouncedValue, setDebouncedValue] = useState(value);
+//     useEffect(() => {
+//         // Update debounced value after delay
+//         const handler = setTimeout(() => {
+//             setDebouncedValue(value);
+//         }, delay);
+
+//         return () => {
+//             clearTimeout(handler);
+//         };
+//     }, [value, delay]);
+
+//     return debouncedValue;
+// }
+
 function useDebounce(value, delay) {
+    // State and setters for debounced value
     const [debouncedValue, setDebouncedValue] = useState(value);
-    useEffect(() => {
-        // Update debounced value after delay
-        const handler = setTimeout(() => {
-            setDebouncedValue(value);
-        }, delay);
-
-        return () => {
-            clearTimeout(handler);
-        };
-    }, [value, delay]);
-
+    useEffect(
+        () => {
+            // Update debounced value after delay
+            const handler = setTimeout(() => {
+                setDebouncedValue(value);
+            }, delay);
+            return () => {
+                clearTimeout(handler);
+            };
+        },
+        [value, delay] // Only re-call effect if value or delay changes
+    );
     return debouncedValue;
 }
 
@@ -55,6 +73,7 @@ const SearchHeader = () => {
                 category === 'all'
                     ? delete queries['product_categories.slug']
                     : null;
+                console.log('queries', queries);
                 const products = ProductRepository.getRecords(queries);
                 products.then((result) => {
                     setLoading(false);
