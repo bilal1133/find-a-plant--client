@@ -17,9 +17,9 @@ import Head from 'next/head';
 async function getBannerItems() {
     const responseData = await MediaRepository.getBannersBySlug(
         'banner-home-fullwidth'
-    );
-    console.log('responseData', responseData);
-    if (responseData) {
+        );
+        console.log('responseData', responseData);
+        if (responseData) {
         setBannerItems(responseData);
     }
 }
@@ -27,7 +27,7 @@ async function getBannerItems() {
 async function getPromotions() {
     const responseData = await MediaRepository.getPromotionsBySlug(
         'home_fullwidth_promotions'
-    );
+        );
     if (responseData) {
         setPromotion1(getItemBySlug(responseData, 'main_1'));
         setPromotion2(getItemBySlug(responseData, 'main_2'));
@@ -44,12 +44,12 @@ const carouselSetting = {
     prevArrow: <PrevArrow />,
 };
 // useEffect(() => {
-//     getBannerItems();
-//     getPromotions();
-// }, []);
-const HomeDefaultBanner = () => {
-    const [bannerItems, setBannerItems] = useSta te(bannerData);
-    // Views
+    //     getBannerItems();
+    //     getPromotions();
+    // }, []);
+    const HomeDefaultBanner = () => {
+        const [bannerItems, setBannerItems] = useState(bannerData);
+        // Views
     let mainCarouselView, myCarousel;
     if (bannerItems?.items) {
         const carouseItems = bannerItems.items.map((item) => (
