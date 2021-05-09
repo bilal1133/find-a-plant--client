@@ -6,7 +6,7 @@ import VendorProducts from './modules/VendorProducts';
 import NextArrow from '../../elements/carousel/NextArrow';
 import PrevArrow from '../../elements/carousel/PrevArrow';
 import Rating from '../../elements/Rating';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { carouselStandard } from '../../../utilities/carousel-helpers';
 import ProductOffline from '../../elements/products/ProductOffline';
 import productRepo from '~/repositories/ProductRepository';
@@ -16,10 +16,13 @@ import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProdu
 import VendorMap from '~/components/elements/Map/VedorMap';
 import { baseUrl } from '~/repositories/Repository';
 import LazyLoad from 'react-lazyload';
+import SkeletonProductHorizontal from '~/components/elements/skeletons/SkeletonProductHorizontal';
 const VendorStore = () => {
     let storeView = null;
+
     const {
         query: { name },
+        push,
     } = useRouter();
     const {
         isLoading: prodLoading,
@@ -33,6 +36,9 @@ const VendorStore = () => {
         error: storeError,
         data: storeData,
     } = useQuery('storeData', () => storeRepo.getStores({ store_name: name }));
+    if (prodData?.length === 0 || prodError) {
+        push('/404');
+    }
     if (storeLoading || storeError) {
         storeView = <SkeletonProductDetail />;
     } else storeView = <VendorProfile data={storeData && storeData[0]} />;
@@ -73,7 +79,16 @@ const VendorStore = () => {
                                     </form>
                                 </div>
                             </div>
-                            <VendorProducts data={prodData} />
+                            {prodLoading ? (
+                                <>
+                                    <SkeletonProductHorizontal />
+                                    <SkeletonProductHorizontal />
+                                    <SkeletonProductHorizontal />
+                                    <SkeletonProductHorizontal />
+                                </>
+                            ) : (
+                                <VendorProducts data={prodData} />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -182,7 +197,7 @@ const VendorProfile = ({ data }) => {
                             className="fa fa-whatsapp "
                             style={{
                                 fontSize: '25px',
-                                'marginLeft': ' 13px',
+                                marginLeft: ' 13px',
                             }}></i>
                     </a>
                 </div>

@@ -5,7 +5,7 @@ const ModuleProductDetailDescription = ({ product }) => (
     <div className="ps-product__desc">
         <p>
             Sold By:
-            <Link href="/shop">
+            <Link href={`/vendor/${product?.store?.store_name}`}>
                 <a className="ml-2 text-capitalize">
                     {product?.store.store_name}
                 </a>
@@ -18,8 +18,7 @@ const ModuleProductDetailDescription = ({ product }) => (
             className="ps-list--dot"
             dangerouslySetInnerHTML={{
                 __html: product?.description,
-            }}
-        >
+            }}>
             {/* {product?.description} */}
             {/* // <li>Unrestrained and portable active stereo speaker</li>
             // <li> Free from the confines of wires and chords</li>

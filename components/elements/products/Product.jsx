@@ -24,7 +24,7 @@ const Product = ({ product }) => {
                 <ModuleProductActions product={product} />
             </div>
             <div className="ps-product__container">
-                <Link href="/shop">
+                <Link href={`/vendor/${product?.store?.store_name}`}>
                     <a className="ps-product__vendor">
                         Sold By: {product.store?.store_name}
                     </a>

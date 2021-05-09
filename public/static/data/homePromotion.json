@@ -1,0 +1,18 @@
+[
+    {
+        "id": "promotion1",
+        "link": "/shop",
+        "image": {
+            "alternativeText": "",
+            "url": "/static/img/slider/home-1/gardening_service.png"
+        }
+    },
+    {
+        "id": "promotion1",
+        "link": "/shop",
+        "image": {
+            "alternativeText": "",
+            "url": "/static/img/slider/home-1/gits_lahore.png"
+        }
+    }
+]

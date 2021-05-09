@@ -57,7 +57,10 @@ class PanelCartMobile extends Component {
                                     </Link>
                                     <p>
                                         <strong>Sold by:</strong>{' '}
-                                        {product.vendor}
+                                        <Link
+                                            href={`/vendor/${product.store?.store_name}`}>
+                                            <a>{product.vendor} </a>
+                                        </Link>
                                     </p>
                                     <small>
                                         {product.quantity} x ${product.price}
