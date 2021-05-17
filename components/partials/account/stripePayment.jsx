@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
     CardElement,
@@ -6,6 +6,9 @@ import {
     useElements,
     useStripe,
 } from '@stripe/react-stripe-js';
+import { getDomainLocale } from 'next/dist/next-server/lib/router/router';
+import axios from 'axios';
+import paymentRepositry from '~/repositories/PaymentRepositry';
 // import './styles.css';
 
 const CARD_OPTIONS = {
@@ -109,10 +112,23 @@ const CheckoutForm = ({ amount, callback }) => {
     const [processing, setProcessing] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [billingDetails, setBillingDetails] = useState({});
+    const [clientSecret, setClientSecret] = useState(null);
+
+    useEffect(() => {
+        // Create PaymentIntent as soon as the page loads
+        console.log('Data in props');
+        paymentRepositry
+            .getClientSecret({ amount: 400, currency: 'pkr' })
+            .then((res) => {
+                setClientSecret(res.client_secret);
+            })
+            .catch((e) =>
+                console.log('THE error in slient secret', e.response)
+            );
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet. Make sure to disable
             // form submission until Stripe.js has loaded.
@@ -128,27 +144,23 @@ const CheckoutForm = ({ amount, callback }) => {
             setProcessing(true);
         }
 
-        const payload = await stripe.createPaymentMethod({
-            type: 'card',
-            card: elements.getElement(CardElement),
-            billing_details: billingDetails,
-            // country: 'PK',
-            // currency: 'pkr',
-            // total: {
-            //     label: `Total`,
-            //     amount: 1000,
-            // },
+        const payload = await stripe.confirmCardPayment(clientSecret, {
+            // receipt_email: 'b@getDomainLocale.com',
+            payment_method: {
+                card: elements.getElement(CardElement),
+                billing_details: {
+                    name: 'bilal',
+                },
+            },
         });
-
-        setProcessing(false);
-
         if (payload.error) {
             console.log(payload.error);
             setError(payload.error);
         } else {
             callback(payload);
-            setPaymentMethod(payload.paymentMethod);
+            setPaymentMethod(payload.paymentIntent.payment_method);
         }
+        setProcessing(false);
     };
 
     const reset = () => {

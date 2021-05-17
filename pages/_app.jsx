@@ -22,8 +22,11 @@ import '~/scss/market-place-1.scss';
 // import '~/scss/electronic.scss';
 import '~/scss/custom.scss';
 import Loading from '~/components/Loading';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import axios from 'axios';
+import { setupAxios } from '~/utilities/axiosSetup';
 
+// const bilal = createStore.getState();
 const queryClient = new QueryClient();
 class MyApp extends App {
     constructor(props) {
@@ -31,11 +34,16 @@ class MyApp extends App {
         this.persistor = persistStore(props.store);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         setTimeout(function () {
             document.getElementById('__next').classList.add('loaded');
         }, 100);
-
+        console.log('Calling setup');
+        try {
+            // await setupAxios(axios, this.props.store);
+        } catch (error) {
+            console.log('Error setup');
+        }
         this.setState({ open: true });
     }
     render() {
