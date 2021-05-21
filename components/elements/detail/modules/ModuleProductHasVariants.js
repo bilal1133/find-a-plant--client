@@ -95,6 +95,7 @@ class ModuleProductHasVariants extends Component {
         const { product, currency } = this.props;
         const { selectedVariant, selectedSize, sizeItems } = this.state;
         let variants, sizeSelectionArea, priceArea, thumbnailArea;
+        console.log("THe currency is ,",currency);
         if (selectedVariant !== null) {
             if (selectedVariant.is_sale) {
                 priceArea = (

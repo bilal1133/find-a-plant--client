@@ -1,4 +1,3 @@
-
 import React from 'react';
 import LazyLoad from 'react-lazyload';
 import { baseUrl } from '~/repositories/Repository';
@@ -82,16 +81,16 @@ export function StrapiProductPrice(product) {
     if (product.is_sale === true) {
         view = (
             <p className="ps-product__price sale">
-                ${formatCurrency(product.price)}
+                Rs. {formatCurrency(product.price)}
                 <del className="ml-2">
-                    ${formatCurrency(product.sale_price)}
+                    Rs. {formatCurrency(product.sale_price)}
                 </del>
             </p>
         );
     } else {
         view = (
             <p className="ps-product__price">
-                ${formatCurrency(product.price)}
+                Rs. {formatCurrency(product.price)}
             </p>
         );
     }

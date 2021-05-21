@@ -22,7 +22,13 @@ const ProductWide = ({ product }) => {
                             <a>{product.store?.store_name}</a>
                         </Link>
                     </p>
-                    <ul className="ps-product__desc">{product.description}</ul>
+                    <ul
+                        className="ps-product__desc"
+                        style={{
+                            maxWidth: '410px',
+                        }}>
+                        {product.description}
+                    </ul>
                 </div>
                 <ModuleProductWideActions product={product} />
             </div>
