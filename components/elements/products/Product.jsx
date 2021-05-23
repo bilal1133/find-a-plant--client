@@ -15,7 +15,7 @@ const Product = ({ product }) => {
     const priceView = StrapiProductPrice(product);
     const thumbnailImage = StrapiProductThumbnail(product);
     const badgeView = StrapiProductBadge(product);
-
+console.log("Sold",product);
     return (
         <div className="ps-product">
             <div className="ps-product__thumbnail">
@@ -24,11 +24,11 @@ const Product = ({ product }) => {
                 <ModuleProductActions product={product} />
             </div>
             <div className="ps-product__container">
-                <Link href={`/vendor/${product?.store?.store_name}`}>
+                {/* <Link href={`/vendor/${product?.store?.store_name}`}>
                     <a className="ps-product__vendor">
                         Sold By: {product.store?.store_name}
                     </a>
-                </Link>
+                </Link> */}
                 <div className="ps-product__content">
                     <Link href="/product/[pid]" as={`/product/${product.id}`}>
                         <a className="ps-product__title">{product.title}</a>

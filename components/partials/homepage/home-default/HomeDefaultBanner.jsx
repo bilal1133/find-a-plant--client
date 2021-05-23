@@ -65,13 +65,13 @@ const HomeDefaultBanner = () => {
             "desc": "Grow Plants in your Garden",
             "btn_text": "Shop Now",
             "text_on_top": "Fina Plant", */}
-                        <div class="hdb-slide-content ">
+                        <div className="hdb-slide-content ">
                             <span className="m-sm-4 m-lg-3">
-                                <h3 class="hd-slide__title">{item.title}</h3>
-                                <div class="hdb-slide__text">{item.desc}</div>
+                                <h3 className="hd-slide__title">{item.title}</h3>
+                                <div className="hdb-slide__text">{item.desc}</div>
                             </span>
-                            <div class=" ">
-                                <span class="hdb-slide__button ps-btn m-sm-4 m-lg-3 animate__animated animate__pulse animate__delay-2s animate__infinite p-2 p-sm-1 p-lg-3 p-md-3 ">
+                            <div className=" ">
+                                <span className="hdb-slide__button ps-btn m-sm-4 m-lg-3 animate__animated animate__pulse animate__delay-2s animate__infinite p-2 p-sm-1 p-lg-3 p-md-3 ">
                                     {item.btn_text}
                                 </span>
                             </div>

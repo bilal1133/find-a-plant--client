@@ -41,7 +41,7 @@ const Logo = ({ type }) => {
     else {
         data = {
             url: '/',
-            img: '/static/img/plantlogo.png',
+            img: '/static/img/logo_light.png',
         };
     }
     return (
