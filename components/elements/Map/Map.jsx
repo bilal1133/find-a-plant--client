@@ -26,7 +26,7 @@ const Map = () => {
 
     const locations = [
         {
-            name: 'Location 1',
+            name: 'DHA Nursery',
             location: {
                 lat: 31.4554,
                 lng: 74.442,
@@ -39,31 +39,17 @@ const Map = () => {
             provence: 'Punjab',
         },
         {
-            name: 'Location 2',
+            name: 'Ali Nursery',
             location: {
                 lat: 31.4517,
                 lng: 74.4449,
             },
         },
         {
-            name: 'Location 3',
+            name: 'All Garden Nursery',
             location: {
                 lat: 31.4573,
                 lng: 74.4485,
-            },
-        },
-        {
-            name: 'Location 4',
-            location: {
-                lat: 31.4597,
-                lng: 74.4482,
-            },
-        },
-        {
-            name: 'Location 5',
-            location: {
-                lat: 31.4555,
-                lng: 74.4415,
             },
         },
     ];
@@ -103,9 +89,8 @@ const Map = () => {
                             clickable={true}
                             onCloseClick={() => setSelected({})}>
                             <>
-                                <h1>{selected.name}</h1>
-                                <Divider orientation="left">Large Size</Divider>
-                                <h1>{selected.name}</h1>
+                                <h3>{selected.name}</h3>
+                                <Divider orientation="left"></Divider>
                             </>
                         </InfoWindow>
                     )}
