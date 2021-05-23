@@ -220,13 +220,14 @@ export const CheckOutNotLogIn = () => {
 
     const { isLoggedIn, loading, error } = useSelector(({ auth }) => auth);
     const handleLoginSubmit = (e) => {
-        // console.log(e.response);
         e.provider = 'local';
         e.username = e.phone;
-        dispatch(registerLocal(e));
-        if (isLoggedIn) {
-            Router.push('/account/shipping');
-        }
+        dispatch(
+            registerLocal({
+                data: e,
+                callback: () => Router.push('/account/shipping'),
+            })
+        );
     };
     return (
         <Form
@@ -301,7 +302,7 @@ export const CheckOutNotLogIn = () => {
                     rules={[
                         {
                             required: true,
-                            message: `Please Enter password`,
+                            message: `Please Enter E-Mail`,
                         },
                         {
                             type: 'email',

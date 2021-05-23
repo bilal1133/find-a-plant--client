@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import { login } from '../../../store/auth/action';
+import { registerLocal, updateUser } from '../../../store/auth/action';
 
-import { Form, Input, Radio } from 'antd';
+import { Form, Input, Radio, Spin } from 'antd';
 import { connect } from 'react-redux';
 
 class Register extends Component {
@@ -11,25 +11,61 @@ class Register extends Component {
         super(props);
         this.state = {};
     }
+    formRef = React.createRef();
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                this.props.dispatch(login());
-                Router.push('/account/login');
-            } else {
-            }
-        });
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.form.validateFields((err, values) => {
+    //         if (!err) {
+    //             this.props.dispatch(login());
+    //             Router.push('/account/login');
+    //         } else {
+    //         }
+    //     });
+    // };
+    handleLoginSubmit = (e, b) => {
+        delete e.confirm;
+        // let data = {
+        //     address: {
+        //         address: user?.address.address,
+        //         apartment: user?.address.apartment,
+        //         city: user?.address.city,
+        //         postalCode: user?.address.postalCode,
+        //         provence: user?.address.provence,
+        //     },
+        //     phone: user.phone,
+        // };
+        // // console.log(e, data);
+        // if (_.isEqual(e, data)) {
+        //     Router.push('/account/shipping');
+        // } else
+        e.provider = 'local';
+        e.username = e.phone;
+        this.props.dispatch(
+            registerLocal({
+                data: e,
+                callback: () => Router.push('/'),
+            })
+        );
     };
-
     render() {
+        if (this.props.error) {
+            this.formRef.current.setFields([
+                { errors: ['Email already Taken'], name: 'email' },
+                { errors: ['Phone No is already Taken'], name: 'phone' },
+            ]);
+        }
         return (
             <div className="ps-my-account">
                 <div className="container">
                     <Form
-                        className="ps-form--account"
-                        onSubmit={this.handleSubmit}>
+                        scrollToFirstError
+                        className="ps-form--account pt-1"
+                        // onSubmit={this.handleSubmit}
+                        onFinish={this.handleLoginSubmit}
+                        ref={this.formRef}
+                        
+                        >
                         <ul className="ps-tab-list">
                             <li>
                                 <Link href="/account/login">
@@ -110,6 +146,16 @@ class Register extends Component {
                                                 message:
                                                     'Please input your Phone No',
                                             },
+                                            {
+                                                max: 11,
+                                                message:
+                                                    'Please Enter Valid Phone No',
+                                            },
+                                            {
+                                                min: 11,
+                                                message:
+                                                    'Please Enter Valid Phone No',
+                                            },
                                         ]}>
                                         <Input
                                             className="form-control"
@@ -172,7 +218,7 @@ class Register extends Component {
                                         />
                                     </Form.Item>
                                 </div>
-
+                                {/* 
                                 <Form.Item name="user_type">
                                     <Radio.Group>
                                         <Radio value="vendor">
@@ -182,17 +228,27 @@ class Register extends Component {
                                             I am a Customer
                                         </Radio>
                                     </Radio.Group>
-                                </Form.Item>
-
+                                </Form.Item> */}
+                                {this.props.error && (
+                                    <h5 style={{ color: 'red' }}>
+                                        {this.props.error}
+                                    </h5>
+                                )}{' '}
                                 <div className="form-group submit">
                                     <button
                                         type="submit"
-                                        className="ps-btn ps-btn--fullwidth">
-                                        Register
+                                        className="ps-btn ps-btn--fullwidth"
+                                        disabled={this.props.loading}
+                                        style={{
+                                            backgroundColor:
+                                                this.props.loading && '#000000',
+                                        }}>
+                                        Register{' '}
+                                        {this.props.loading && <Spin />}
                                     </button>
                                 </div>
                             </div>
-                            <div className="ps-form__footer">
+                            {/* <div className="ps-form__footer">
                                 <p>Connect with:</p>
                                 <ul className="ps-list--social">
                                     <li>
@@ -216,7 +272,7 @@ class Register extends Component {
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                     </Form>
                 </div>

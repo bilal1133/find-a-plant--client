@@ -52,17 +52,19 @@ function* logOutSaga() {
         console.log(err);
     }
 }
-function* registerLocalSaga(data) {
+function* registerLocalSaga({ payload }) {
     try {
         yield put(loading(true));
         yield put(authError(null));
-        let response = yield call(AuthRepository.registerLocal, data.payload);
+        let response = yield call(AuthRepository.registerLocal, payload.data);
         yield put(loginSuccess(response));
         modalSuccess('success', 'Account Created successful!');
-        console.log('response', response);
+        if (payload.callback) {
+            payload.callback();
+        }
         // modalWarning('warning');
     } catch (err) {
-        // console.log('error.response', err.response.data.message[0]);
+        console.log('error.response', err.response.data.message[0]);
         yield put(
             authError(
                 'Email or Phone No is Already Taken. Login or Try with another PhoneNo or Email !'

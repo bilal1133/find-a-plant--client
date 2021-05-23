@@ -37,12 +37,11 @@ class Login extends Component {
     };
 
     render() {
-        console.log('BILALprops', this.props);
         return (
             <div className="ps-my-account">
                 <div className="container">
                     <Form
-                        className="ps-form--account"
+                        className="ps-form--account pt-1"
                         onFinish={this.handleLoginSubmit.bind(this)}>
                         <ul className="ps-tab-list">
                             <li className="active">
@@ -116,7 +115,12 @@ class Login extends Component {
                                     <button
                                         type="submit"
                                         className="ps-btn ps-btn--fullwidth"
-                                        disabled={this.props.loading}>
+                                        disabled={this.props.loading}
+                                        style={{
+                                            backgroundColor:
+                                                this.props.loading && '#000000',
+                                        }}
+                                        >
                                         Login
                                     </button>
                                 </div>
