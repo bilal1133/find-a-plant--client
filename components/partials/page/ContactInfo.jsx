@@ -14,13 +14,13 @@ const ContactInfo = () => (
                             <h4>Contact Directly</h4>
                             <p>
                                 <a href="mailto:contact@martfury.com">
-                                    contact@martfury.com
+                                    bmehmood199@gmail.com   
                                 </a>
-                                <span>(+004) 912-3548-07</span>
+                                <span>(+92) 3248473417</span>
                             </p>
                         </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 ">
+                    {/* <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 ">
                         <div className="ps-block--contact-info">
                             <h4>Head Quater</h4>
                             <p>
@@ -67,6 +67,7 @@ const ContactInfo = () => (
                             </p>
                         </div>
                     </div>
+               */}
                 </div>
             </div>
         </div>

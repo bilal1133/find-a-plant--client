@@ -1,4 +1,5 @@
 import React from 'react';
+import { siteName } from '~/constants/siteDetails';
 
 const VendorDashboard = () => (
     <div className="ps-vendor-dashboard">
@@ -6,7 +7,7 @@ const VendorDashboard = () => (
             <div className="ps-section__header">
                 <h3>Vendor Dasboard Free</h3>
                 <p>
-                    Designed base on WC Vendor Plugin. Martfury also fully
+                    Designed base on WC Vendor Plugin. {siteName} also fully
                     comptatiable with other popular plugins as Dokan, YITH, etc
                     .Can help you turns your site into multi-vendor eCommerce
                     site.

@@ -1,4 +1,5 @@
 import React from 'react';
+import { siteName } from '~/constants/siteDetails';
 
 const VendorBestFrees = () => (
     <div className="ps-section--vendor ps-vendor-best-fees">
@@ -14,7 +15,7 @@ const VendorBestFrees = () => (
                 </h5>
                 <div className="ps-section__numbers">
                     <figure>
-                        <h3>$0</h3>
+                        <h3>Rs. 0</h3>
                         <span>List Fee</span>
                     </figure>
                     <figure>
@@ -43,7 +44,7 @@ const VendorBestFrees = () => (
                         <p>
                             We process payments with PayPal, an external payments platform that
                             allows you to process transactions with a variety of payment methods.
-                            Funds from PayPal sales on Martfury will be deposited into your PayPal
+                            Funds from PayPal sales on {siteName} will be deposited into your PayPal
                             account.
                         </p>
                     </figure>
