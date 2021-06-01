@@ -33,7 +33,8 @@ class PanelCartMobile extends Component {
                                         as={`/product/${product.id}`}>
                                         <a>
                                             <img
-                                                src={`${baseUrl}${product.thumbnail.url}`}
+                                            // ${baseUrl}
+                                                src={`${product.thumbnail.url}`}
                                                 alt="martfury"
                                             />
                                         </a>

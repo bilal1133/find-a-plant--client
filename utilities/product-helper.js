@@ -128,7 +128,7 @@ export function StrapiProductThumbnail(product) {
                 <a>
                     <LazyLoad>
                         <img
-                            src={`${baseUrl}${product.thumbnail.url}`}
+                            src={`${product.thumbnail.url}`}
                             alt={product.title}
                         />
                     </LazyLoad>

@@ -18,7 +18,8 @@ const ThumbnailWithBadge = ({ product, vertical = true }) => {
         let images = [];
         if (product && product.images.length > 0) {
             product.images.map((item) => {
-                images.push(`${baseUrl}${item.url}`);
+                // ${baseUrl}
+                images.push(`${item.url}`);
             });
             setProductImages(images);
         }

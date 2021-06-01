@@ -76,7 +76,8 @@ class ThumbnailHasVariant extends Component {
         const { photoIndex, isOpen } = this.state;
         const productImages = [];
         product.images.map((variant) => {
-            productImages.push(`${baseUrl}${variant.url}`);
+            // ${baseUrl}
+            productImages.push(`${variant.url}`);
         });
 
         return (
@@ -96,7 +97,8 @@ class ThumbnailHasVariant extends Component {
                                             this.handleOpenLightbox(e, index)
                                         }>
                                         <img
-                                            src={`${baseUrl}${variant.url}`}
+                                        // ${baseUrl}
+                                            src={`${variant.url}`}
                                             alt="martfury-image"
                                         />
                                     </a>
@@ -118,7 +120,8 @@ class ThumbnailHasVariant extends Component {
                     {product.images.map((variant) => (
                         <div className="item" key={variant.id}>
                             <img
-                                src={`${baseUrl}${variant.url}`}
+                            // ${baseUrl}
+                                src={`${variant.url}`}
                                 alt="martfury-image"
                             />
                         </div>
