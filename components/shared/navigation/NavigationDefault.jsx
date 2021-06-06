@@ -35,7 +35,7 @@ class NavigationDefault extends Component {
                             className="menu"
                         />
                         <ul className="navigation__extra">
-                            <li>
+                            {/* <li>
                                 <Link href="/vendor/become-a-vendor">
                                     <a>Sell on {siteName}</a>
                                 </Link>
@@ -44,7 +44,7 @@ class NavigationDefault extends Component {
                                 <Link href="/account/order-tracking">
                                     <a>Tract your order</a>
                                 </Link>
-                            </li>
+                            </li> */}
                             {/* <li>
                                 <CurrencyDropdown />
                             </li>

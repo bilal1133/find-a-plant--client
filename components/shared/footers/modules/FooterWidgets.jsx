@@ -41,7 +41,7 @@ const FooterWidgets = () => (
         <aside className="widget widget_footer">
             <h4 className="widget-title">Quick links</h4>
             <ul className="ps-list--link">
-                <li>
+                {/* <li>
                     <Link href="/page/blank">
                         <a>Policy</a>
                     </Link>
@@ -61,7 +61,7 @@ const FooterWidgets = () => (
                     <Link href="/page/blank">
                         <a>Return</a>
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <Link href="/page/faqs">
                         <a>FAQs</a>
@@ -72,21 +72,21 @@ const FooterWidgets = () => (
         <aside className="widget widget_footer">
             <h4 className="widget-title">Company</h4>
             <ul className="ps-list--link">
-                <li>
+                {/* <li>
                     <Link href="/page/about-us">
                         <a>About Us</a>
                     </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                     <Link href="/page/blank">
                         <a>Affilate</a>
                     </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                     <Link href="/page/blank">
                         <a>Career</a>
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <Link href="/page/contact-us">
                         <a>Contact</a>
@@ -119,7 +119,6 @@ const FooterWidgets = () => (
                 </li>
             </ul>
         </aside>
-    
     </div>
 );
 

@@ -8,7 +8,7 @@ class AccountQuickLinks extends Component {
         super(props);
     }
 
-    handleLogout = e => {
+    handleLogout = (e) => {
         e.preventDefault();
         this.props.dispatch(logOut());
     };
@@ -19,22 +19,22 @@ class AccountQuickLinks extends Component {
                 text: 'Account Information',
                 url: '/account/user-information',
             },
-            {
-                text: 'Notifications',
-                url: '/account/notifications',
-            },
+            // {
+            //     text: 'Notifications',
+            //     url: '/account/notifications',
+            // },
             {
                 text: 'Invoices',
                 url: '/account/invoices',
             },
-            {
-                text: 'Address',
-                url: '/account/addresses',
-            },
-            {
-                text: 'Recent Viewed Product',
-                url: '/account/recent-viewed-product',
-            },
+            // {
+            //     text: 'Address',
+            //     url: '/account/addresses',
+            // },
+            // {
+            //     text: 'Recent Viewed Product',
+            //     url: '/account/recent-viewed-product',
+            // },
             {
                 text: 'Wishlist',
                 url: '/account/wishlist',
@@ -42,7 +42,7 @@ class AccountQuickLinks extends Component {
         ];
         const menu = (
             <Menu>
-                {accountLinks.map(link => (
+                {accountLinks.map((link) => (
                     <Menu.Item key={link.url}>
                         <Link href={link.url}>
                             <a>{link.text}</a>
@@ -67,7 +67,7 @@ class AccountQuickLinks extends Component {
         );
     }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state;
 };
 export default connect(mapStateToProps)(AccountQuickLinks);
