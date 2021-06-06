@@ -1,6 +1,6 @@
 {
     "menuPrimary": {
-        "menu_1": [
+        "menu_1": [ 
             {
                 "text": "Home",
                 "url": "/"
@@ -189,42 +189,85 @@
         {
             "icon": "icon-apartment",
             "text": "Corporate Building",
-            "url": "/shop?specification[location]=corporate_building"
+            "url": "/shop",
+            "extraClass": "menu-item-has-children has-mega-menu",
+            "subClass": "sub-menu",
+            "mega": true,
+            "megaContent": [
+                {
+                    "heading": "Front Yard",
+                    "megaItems": [
+                        {
+                            "text": "Palm Trees",
+                            "url": "/shop"
+                        },
+                        {
+                            "text": "Flower Tree",
+                            "url": "/shop"
+                        },
+                        {
+                            "text": "Bonsai Plants",
+                            "url": "/shop"
+                        },
+                        {
+                            "text": "Cover Plants",
+                            "url": "/shop"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Indoor Hall",
+                    "megaItems": [
+                        {
+                            "text": "Small Bonsai",
+                            "url": "/shop"
+                        },
+                        {
+                            "text": "Planter Plants",
+                            "url": "/shop"
+                        }
+                    ]
+                },
+                {
+                    "heading": "Office Plants",
+                    "megaItems": []
+                }
+            ]
         },
         {
             "icon": "icon-bed",
             "text": "Bed Room Plants",
-            "url": "/shop?specification[location]=bed_room"
+            "url": "/shop"
         },
         {
             "icon": "icon-tv",
             "text": "Sitting Room Plants",
-            "url": "/shop?specification[location]=sitting_room"
+            "url": "/shop"
         },
         {
             "icon": "icon-teacup",
             "text": "Kitchen Plants",
-            "url": "/shop?specification[location]=kitchen"
+            "url": "/shop"
         },
         {
             "icon": "icon-bathtub",
             "text": "Bathroom Plants",
-            "url": "/shop?specification[location]=bathroom"
+            "url": "/shop"
         },
         {
             "icon": "icon-home6",
             "text": "House Lawn Plants",
-            "url": "/shop?specification[location]=home_lawn"
+            "url": "/shop"
         },
         {
             "icon": "icon-home",
             "text": "Front Yard Plants",
-            "url": "/shop?specification[location]=front_yard"
+            "url": "/shop"
         },
         {
             "icon": "icon-home2",
             "text": "Back Yard Plants",
-            "url": "/shop?specification[location]=back_yard"
+            "url": "/shop"
         }
     ]
 }
