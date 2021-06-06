@@ -1,41 +1,11 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import FormChangeUserInformation from '~/components/shared/FormChangeUserInformation';
+import { connect } from 'react-redux';
+import { accountLinks } from '~/constants/UserDashboard';
 
-const UserInformation = () => {
-    const accountLinks = [
-        {
-            text: 'Account Information',
-            url: '/account/user-information',
-            icon: 'icon-user',
-            active: true,
-        },
-        {
-            text: 'Notifications',
-            url: '/account/notifications',
-            icon: 'icon-alarm-ringing',
-        },
-        {
-            text: 'Invoices',
-            url: '/account/invoices',
-            icon: 'icon-papers',
-        },
-        {
-            text: 'Address',
-            url: '/account/addresses',
-            icon: 'icon-map-marker',
-        },
-        {
-            text: 'Recent Viewed Product',
-            url: '/account/recent-viewed-product',
-            icon: 'icon-store',
-        },
-        {
-            text: 'Wishlist',
-            url: '/account/wishlist',
-            icon: 'icon-heart',
-        },
-    ];
+const UserInformation = ({ user }) => {
+    // const { user } = auth;
 
     //Views
     const accountLinkView = accountLinks.map((item) => (
@@ -57,10 +27,12 @@ const UserInformation = () => {
                         <div className="ps-section__left">
                             <aside className="ps-widget--account-dashboard">
                                 <div className="ps-widget__header">
-                                    <img src="/static/img/users/3.jpg" />
+                                    <img src="/static/img/users/1.png" />
                                     <figure>
                                         <figcaption>Hello</figcaption>
-                                        <p>username@gmail.com</p>
+                                        <p>
+                                            {user?.first_name} {user?.last_name}
+                                        </p>
                                     </figure>
                                 </div>
                                 <div className="ps-widget__content">
@@ -97,7 +69,7 @@ const UserInformation = () => {
                     </div>
                     <div className="col-lg-9">
                         <div className="ps-page__content">
-                            <FormChangeUserInformation />
+                            {user && <FormChangeUserInformation user={user} />}
                         </div>
                     </div>
                 </div>
@@ -106,4 +78,4 @@ const UserInformation = () => {
     );
 };
 
-export default UserInformation;
+export default connect(({ auth }) => auth)(UserInformation);

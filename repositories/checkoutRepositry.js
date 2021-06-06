@@ -1,10 +1,18 @@
 import Repository, { baseUrl, serializeQuery } from './Repository';
 
 class ProductRepository {
-    async getRecords(params) {
+    async getCheckoutRecords(id) {
         const reponse = await Repository.get(
-            `${baseUrl}/products?${serializeQuery(params)}`
+            `${baseUrl}/checkouts?user._id=${id}`
         )
+            .then((response) => {
+                return response.data;
+            })
+            .catch((error) => ({ error: JSON.stringify(error) }));
+        return reponse;
+    }
+    async getSingleCheckout(id) {
+        const reponse = await Repository.get(`${baseUrl}/checkouts/${id}`)
             .then((response) => {
                 return response.data;
             })
