@@ -22,6 +22,8 @@ export const actionTypes = {
 
     UPDATE_CART_SUCCESS: 'UPDATE_CART_SUCCESS',
     UPDATE_CART_ERROR: 'UPDATE_CART_ERROR',
+
+    RESET_CART: 'RESET_CART',
 };
 
 export function getCart() {
@@ -68,5 +70,10 @@ export function updateCartError(payload) {
     return {
         type: actionTypes.UPDATE_CART_ERROR,
         payload,
+    };
+}
+export function resetCart() {
+    return {
+        type: actionTypes.RESET_CART,
     };
 }

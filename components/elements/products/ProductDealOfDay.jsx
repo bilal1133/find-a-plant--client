@@ -11,6 +11,7 @@ import ModuleProductActions from '~/components/elements/products/modules/ModuleP
 import ModuleProductProgressbar from '~/components/elements/products/modules/ModuleProductProgressbar';
 
 const ProductDealOfDay = ({ product }) => {
+    console.log('productproduct', product);
     return (
         <div className="ps-product ps-product--inner">
             <div className="ps-product__thumbnail">
@@ -19,9 +20,9 @@ const ProductDealOfDay = ({ product }) => {
                 <ModuleProductActions product={product} />
             </div>
             <div className="ps-product__container">
-                <Link href="/shop">
+                {/* <Link href="/shop">
                     <a className="ps-product__vendor">Young Bilal Shop</a>
-                </Link>
+                </Link> */}
                 <div className="ps-product__content">
                     {StrapiProductPriceExpanded(product)}
 

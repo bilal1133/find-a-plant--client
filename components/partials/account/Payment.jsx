@@ -1,22 +1,64 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Link from 'next/link';
-import { Button, Form, Input, Radio, Select } from 'antd';
+import { Button, Form, Input, Radio, Select, Spin } from 'antd';
 import ModulePaymentOrderSummary from '~/components/partials/account/modules/ModulePaymentOrderSummary';
 import StripePayment from './stripePayment';
-
 import Checkbox from 'antd/lib/checkbox/Checkbox';
-
+import checkoutRepo from '~/repositories/checkoutRepositry';
+import { adress } from '~/constants/siteDetails';
+import { resetCart } from '~/store/cart/action';
+import Loading from '~/components/Loading';
 const { Option } = Select;
+import { useRouter } from 'next/router';
+const Payment = ({ cart, user, isLoggedIn, dispatch }) => {
+    const router = useRouter();
 
-const Payment = ({ cart, user }) => {
     const handleStripeSucess = (e) => {
-        console.log(e);
+        handleMakeCheckout();
     };
     const onFinish = (e) => {
-        console.log(e);
+        handleMakeCheckout();
     };
 
+    const [loading, setloading] = useState(false);
+
+    let newAdress = { ...user?.address };
+    delete newAdress.__v;
+    delete newAdress._id;
+    delete newAdress.id;
+
+    let data = {
+        shipment_status: 'processing',
+        user: user?._id,
+        store: cart.cartItems[0]?.store || cart.cartItems[0]?.store._id,
+        products: cart.cartItems.map((e) => e._id),
+        shipping_adress: newAdress,
+        contact_no: user?.phone,
+        total: cart.amount,
+        payment: {
+            method: 'cash_on_delivery',
+        },
+    };
+    // useEffect(() => {
+    //     if (!isLoggedIn) {
+    //         router.push('/shop');
+    //     }
+    // }, []);
+    console.log('useruseruser', user);
+    const handleMakeCheckout = async () => {
+        setloading(true);
+        try {
+            const resData = await checkoutRepo.makeCheckout(data);
+            dispatch(resetCart());
+            setloading(false);
+            router.push('/account/thank');
+        } catch (error) {
+            console.log(error);
+            setloading(false);
+        }
+    };
+    // console.log('datadatadatadata', data);
     // let month = [],
     //     year = [];
     // for (let i = 1; i <= 12; i++) {
@@ -27,6 +69,7 @@ const Payment = ({ cart, user }) => {
     // }
     return (
         <div className="ps-checkout ps-section--shopping">
+            {loading && <Loading />}
             <div className="container">
                 <div className="ps-section__header">
                     <h1>Payment</h1>
@@ -38,14 +81,17 @@ const Payment = ({ cart, user }) => {
                                 <div className="ps-block__panel">
                                     <figure>
                                         <small>Contact</small>
-                                        <p>test@gmail.com</p>
+                                        <p>{user?.phone}</p>
                                         <Link href="/account/checkout">
                                             <a>Change</a>
                                         </Link>
                                     </figure>
-                                    <figure>
-                                        <small>Ship to</small>
-                                        <p>2015 South Street, Midland, Texas</p>
+                                    <figure className="m-5">
+                                        <h5>Ship to</h5>
+                                        <p>{user?.address.address}</p>
+                                        <p>{user?.address.apartment}</p>
+                                        <p>{user?.address.city}</p>
+                                        <p>{user?.address.provence}</p>
                                         <Link href="/account/checkout">
                                             <a>Change</a>
                                         </Link>
@@ -60,23 +106,45 @@ const Payment = ({ cart, user }) => {
                                         }}
                                         onFinish={onFinish}>
                                         <h4>Payment Methods</h4>
-                                        <Form.Item name={['payment', 'method']}>
+                                        <Form.Item
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Please Select Payment Method',
+                                                },
+                                            ]}
+                                            name={['payment', 'method']}>
                                             <Radio.Group>
-                                                <Radio value="easypaisa">
-                                                    <img
-                                                        className="payment-img"
-                                                        src="/static/img/easy-paisa.png"
-                                                        alt="Easy Paisas"
-                                                    />
+                                                <Radio
+                                                    value="easypaisa"
+                                                    disabled
+                                                    className="justify-content-center align-items-center m-2">
+                                                    <div>
+                                                        <p>Comming Soon</p>
+                                                        <img
+                                                            className="payment-img"
+                                                            src="/static/img/easy-paisa.png"
+                                                            alt="Easy Paisas"
+                                                        />
+                                                    </div>
                                                 </Radio>
-                                                <Radio value="jazzcash">
-                                                    <img
-                                                        className="payment-img"
-                                                        src="/static/img/jazz-cash.png"
-                                                        alt="Jazz Cash"
-                                                    />
+                                                <Radio
+                                                    value="jazzcash"
+                                                    disabled
+                                                    className="justify-content-center align-items-center m-2">
+                                                    <div>
+                                                        <p>Comming Soon</p>
+                                                        <img
+                                                            className="payment-img"
+                                                            src="/static/img/jazz-cash.png"
+                                                            alt="Jazz Cash"
+                                                        />
+                                                    </div>
                                                 </Radio>
-                                                <Radio value="stripe">
+                                                <Radio
+                                                    className="m-3"
+                                                    value="stripe">
                                                     <img
                                                         className="payment-img"
                                                         src="/static/img/visa.jpg"
@@ -84,6 +152,7 @@ const Payment = ({ cart, user }) => {
                                                     />
                                                 </Radio>
                                                 <Radio
+                                                    className="m-3"
                                                     value={'cash_on_delivery'}>
                                                     <img
                                                         className="payment-img"
@@ -115,12 +184,12 @@ const Payment = ({ cart, user }) => {
                                                             </h1>
                                                         );
 
-                                                    case 'cash_on_delivery':
-                                                        return (
-                                                            <h1>
-                                                                Comming Soon
-                                                            </h1>
-                                                        );
+                                                    // case 'cash_on_delivery':
+                                                    //     return (
+                                                    //         <h1>
+                                                    //             Comming Soon
+                                                    //         </h1>
+                                                    //     );
 
                                                     case 'easypaisa':
                                                         return (
@@ -160,7 +229,10 @@ const Payment = ({ cart, user }) => {
                                                     )?.method !== 'stripe' && (
                                                         <div className="form-group">
                                                             <button className="ps-btn ps-btn--fullwidth">
-                                                                Submit
+                                                                Proceed
+                                                                {loading && (
+                                                                    <Spin />
+                                                                )}
                                                             </button>
                                                         </div>
                                                     )
@@ -281,6 +353,7 @@ const Payment = ({ cart, user }) => {
 export default connect(({ cart, auth }) => ({
     cart: cart,
     user: auth.user,
+    isLoggedIn: auth.isLoggedIn,
 }))(Payment);
 // "shipment_status": "processing",
 //   "user": "string",

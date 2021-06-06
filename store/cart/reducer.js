@@ -36,6 +36,10 @@ function reducer(state = initCart, action) {
                 ...state,
                 ...{ error: action.error },
             };
+        case actionTypes.RESET_CART:
+            return {
+                ...initCart,
+            };
         default:
             return state;
     }

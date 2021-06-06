@@ -23,7 +23,7 @@ function reducer(state = initState, action) {
             return {
                 ...state,
                 ...{ isLoggedIn: true },
-                user: action.payload,
+                ...action.payload,
             };
         case actionTypes.LOGOUT_SUCCESS:
             return {

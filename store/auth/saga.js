@@ -77,7 +77,9 @@ function* updateUserSaga(data) {
     try {
         yield put(loading(true));
         yield put(authError(null));
+        
         let response = yield call(AuthRepository.updateUserData, data.payload);
+       
         yield put(loginSuccess(response));
         modalSuccess('success', 'Updated successful!');
         if (data.payload.callback) {

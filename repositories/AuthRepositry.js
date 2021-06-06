@@ -32,7 +32,7 @@ class AuthRepository {
                 // identifier: 'iqbal@gmail.com',
                 // password: 'string123',
             });
-            return reponse.data.user;
+            return reponse.data;
         } catch (error) {
             throw error;
         }
@@ -44,7 +44,7 @@ class AuthRepository {
                 `${baseUrl}/auth/local/register`,
                 data
             );
-            return reponse.data.user;
+            return reponse.data;
         } catch (error) {
             throw error;
         }
@@ -55,27 +55,28 @@ class AuthRepository {
                 `${baseUrl}/auth/${data.provider}/callback?${data.search}`,
                 data
             );
-            return reponse.data.user;
+            return reponse.data;
         } catch (error) {
             throw error;
         }
     }
 
     async updateUserData(data) {
+        let jwt = JSON.parse(
+            JSON.parse(localStorage.getItem('persist:Find-a-Plant'))?.auth
+        )?.jwt;
         try {
-            console.log(data);
-            console.log('the config', this);
             const response = await Repository.put(
                 `${baseUrl}/users/${data.id}`,
                 data.data,
                 {
                     headers: {
-                        Authorization:
-                            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwODUwYjNhNTY5MzY0M2Y5ODEwMjE2YSIsImlhdCI6MTYxOTMzMTkwMSwiZXhwIjoxNjIxOTIzOTAxfQ.U4efJMAMslI8KsfGrSlwzlv4H4b9RoemsXQwrANhCbs',
+                        Authorization: `Bearer ${jwt}`,
                     },
                 }
             );
-            return response.data;
+            console.log('responseresponse', response);
+            return {user:response.data};
             // { error: JSON.stringify(error) }));
         } catch (error) {
             throw error;
