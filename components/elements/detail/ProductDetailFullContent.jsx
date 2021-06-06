@@ -14,8 +14,8 @@ const ProductDetailFullContent = ({ product }) => {
         if (product.is_sale === true) {
             priceView = (
                 <h4 className="ps-product__price sale">
-                    <del className="mr-2">${product.sale_price}</del>$
-                    {product.price}
+                    <del className="mr-2">Rs {product.price}</del>Rs
+                    {product.sale_price}
                 </h4>
             );
         } else {
@@ -31,7 +31,7 @@ const ProductDetailFullContent = ({ product }) => {
                             <ModuleProductDetailDescription product={product} />
                             <ModuleProductDetailSpecification />
                             <ModuleProductDetailSharing />
-                            <ModuleDetailActionsMobile product={product}/>
+                            <ModuleDetailActionsMobile product={product} />
                         </div>
                     </div>
                     <div className="ps-product__price-right">

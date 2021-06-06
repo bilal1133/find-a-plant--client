@@ -95,7 +95,7 @@ class ShoppingCart extends Component {
                                                 </div>*/}
                                             </td>
                                             <td className="price">
-                                                ${product.price}
+                                                Rs {product.price}
                                             </td>
                                             <td>
                                                 <div className="form-group--number">
@@ -125,7 +125,7 @@ class ShoppingCart extends Component {
                                                 </div>
                                             </td>
                                             <td>
-                                                $
+                                                Rs.
                                                 {product.quantity *
                                                     product.price}
                                             </td>
@@ -159,7 +159,7 @@ class ShoppingCart extends Component {
                                 <div className="ps-block--shopping-total">
                                     <div className="ps-block__header">
                                         <p>
-                                            Subtotal <span> ${amount}</span>
+                                            Subtotal <span> Rs {amount}</span>
                                         </p>
                                     </div>
                                     <div className="ps-block__content">
@@ -197,7 +197,7 @@ class ShoppingCart extends Component {
                                                 : ''}
                                         </ul>
                                         <h3>
-                                            Total <span>${amount}</span>
+                                            Total <span>Rs {amount}</span>
                                         </h3>
                                     </div>
                                 </div>

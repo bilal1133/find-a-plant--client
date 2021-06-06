@@ -142,21 +142,21 @@ class Product extends Component {
                             <a className="ps-product__title">{product.title}</a>
                         </Link>
                         <div className="ps-product__rating">
-                            <Rating value={product.rating}/>
+                            <Rating value={product.rating} />
                             <span>{product.ratingCount}</span>
                         </div>
                         {product.is_sale === true ? (
                             <p className="ps-product__price sale">
-                                {currency ? currency.symbol : '$'}
+                                {currency ? currency.symbol : 'Rs'}
                                 {formatCurrency(product.price)}
                                 <del className="ml-2">
-                                    {currency ? currency.symbol : '$'}
+                                    {currency ? currency.symbol : 'Rs'}
                                     {formatCurrency(product.sale_price)}
                                 </del>
                             </p>
                         ) : (
                             <p className="ps-product__price">
-                                {currency ? currency.symbol : '$'}
+                                {currency ? currency.symbol : 'Rs'}
                                 {formatCurrency(product.price)}
                             </p>
                         )}
@@ -169,10 +169,10 @@ class Product extends Component {
                         </Link>
                         {product.is_sale === true ? (
                             <p className="ps-product__price sale">
-                                {currency ? currency.symbol : '$'}
+                                {currency ? currency.symbol : 'Rs'}
                                 {formatCurrency(product.price)}{' '}
                                 <del className="ml-2">
-                                    {currency ? currency.symbol : '$'}
+                                    {currency ? currency.symbol : 'Rs'}
                                     {product.sale_price}
                                 </del>
                             </p>

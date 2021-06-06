@@ -81,10 +81,8 @@ export function StrapiProductPrice(product) {
     if (product.is_sale === true) {
         view = (
             <p className="ps-product__price sale">
-                Rs. {formatCurrency(product.price)}
-                <del className="ml-2">
-                    Rs. {formatCurrency(product.sale_price)}
-                </del>
+                Rs. {formatCurrency(product.sale_price)}
+                <del className="ml-2">Rs. {formatCurrency(product.price)}</del>
             </p>
         );
     } else {
@@ -102,10 +100,8 @@ export function StrapiProductPriceExpanded(product) {
     if (product.is_sale === true) {
         view = (
             <p className="ps-product__price sale">
-                ${formatCurrency(product.price)}
-                <del className="ml-2">
-                    ${formatCurrency(product.sale_price)}
-                </del>
+                Rs{formatCurrency(product.sale_price)}
+                <del className="ml-2">Rs{formatCurrency(product.price)}</del>
                 <small>18% off</small>
             </p>
         );

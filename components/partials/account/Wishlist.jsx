@@ -65,11 +65,11 @@ class Wishlist extends Component {
                                                     />
                                                 </td>
                                                 <td className="price">
-                                                    ${product.price}
+                                                    Rs.{product.price}
                                                 </td>
                                                 <td>{product.vendor}</td>
                                                 <td>
-                                                    <a
+                                                    <button
                                                         className="ps-btn"
                                                         href=""
                                                         onClick={e =>
@@ -79,7 +79,7 @@ class Wishlist extends Component {
                                                             )
                                                         }>
                                                         Add to cart
-                                                    </a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}
